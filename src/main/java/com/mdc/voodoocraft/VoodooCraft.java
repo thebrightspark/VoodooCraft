@@ -26,13 +26,14 @@ public class VoodooCraft {
     public static VoodooTab creativeTab;
 
     public static Logger log = FMLLog.getLogger();
-
-    public static Configuration config;
-
+    
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e){
         log.info("voodoocraft Pre-Init");
+        Configuration config = new Configuration(e.getSuggestedConfigurationFile());
+		VCConfig.init(config);
+		
         proxy.preInit(e);
 
         creativeTab = new VoodooTab(CreativeTabs.getNextID(), "voodoo_tab");

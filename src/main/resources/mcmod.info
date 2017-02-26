@@ -1,21 +1,16 @@
+[
 {
-  "modListVersion": 2,
-  "modList": [{
-    "modid": "voodoocraft",
-    "name": "VoodooCraft",
-    "description": "",
-    "version": "VERSION",
-    "mcversion": "MC_VERSION",
-    "url": "",
-    "updateUrl": "",
-    "authorList": [ ],
-    "credits": "",
-    "logoFile": "",
-    "screenshots": [],
-    "parent": "",
-    "requiredMods": [],
-    "dependencies": [],
-    "dependants": [],
-    "useDependencyInformation": false
-  }]
+  "modid": "voodoocraft",
+  "name": "VoodooCraft",
+  "description": "This is a mod that incorporates everything piggy!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["OCDiary"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
 }
+]

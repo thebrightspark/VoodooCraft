@@ -1,4 +1,4 @@
-package com.mdc.VoodooCraft.lib;
+package com.mdc.VoodooCraft.registry;
 
 public class Refs {
 

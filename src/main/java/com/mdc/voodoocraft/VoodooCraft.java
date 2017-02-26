@@ -1,6 +1,6 @@
 package com.mdc.VoodooCraft;
 
-import com.mdc.VoodooCraft.lib.Refs;
+import com.mdc.VoodooCraft.registry.Refs;
 import com.mdc.VoodooCraft.proxy.Common;
 import com.mdc.VoodooCraft.registry.VoodooTab;
 import net.minecraft.creativetab.CreativeTabs;

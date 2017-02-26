@@ -1,8 +1,8 @@
-package com.mdc.voodoocraft;
+package com.mdc.VoodooCraft;
 
-import com.mdc.voodoocraft.lib.Refs;
-import com.mdc.voodoocraft.proxy.Common;
-import com.mdc.voodoocraft.registry.VoodooTab;
+import com.mdc.VoodooCraft.lib.Refs;
+import com.mdc.VoodooCraft.proxy.Common;
+import com.mdc.VoodooCraft.registry.VoodooTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;

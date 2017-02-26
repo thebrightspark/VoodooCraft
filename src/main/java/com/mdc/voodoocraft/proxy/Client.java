@@ -1,4 +1,4 @@
-package com.mdc.voodoocraft.proxy;
+package com.mdc.VoodooCraft.proxy;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

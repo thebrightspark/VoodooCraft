@@ -1,4 +1,4 @@
-package com.mdc.VoodooCraft.items;
+package com.mdc.voodoocraft.items;
 
 public class VCItems {
 }

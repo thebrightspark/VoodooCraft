@@ -1,8 +1,8 @@
-package com.mdc.VoodooCraft;
+package com.mdc.voodoocraft;
 
-import com.mdc.VoodooCraft.registry.Refs;
-import com.mdc.VoodooCraft.proxy.Common;
-import com.mdc.VoodooCraft.registry.VoodooTab;
+import com.mdc.voodoocraft.registry.Refs;
+import com.mdc.voodoocraft.proxy.Common;
+import com.mdc.voodoocraft.registry.VoodooTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -32,7 +32,7 @@ public class VoodooCraft {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e){
-        log.info("VoodooCraft Pre-Init");
+        log.info("voodoocraft Pre-Init");
         proxy.preInit(e);
 
         creativeTab = new VoodooTab(CreativeTabs.getNextID(), "voodoo_tab");
@@ -43,7 +43,7 @@ public class VoodooCraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e){
-        log.info("VoodooCraft Init");
+        log.info("voodoocraft Init");
         proxy.init(e);
 
         MinecraftForge.EVENT_BUS.register(instance);
@@ -53,7 +53,7 @@ public class VoodooCraft {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent e){
-        log.info("VoodooCraft Post-Init");
+        log.info("voodoocraft Post-Init");
         proxy.postInit(e);
 
     }

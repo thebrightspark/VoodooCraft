@@ -1,4 +1,4 @@
-package com.mdc.VoodooCraft.registry;
+package com.mdc.voodoocraft.registry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;

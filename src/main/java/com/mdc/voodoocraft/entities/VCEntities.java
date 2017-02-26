@@ -1,4 +1,4 @@
-package com.mdc.VoodooCraft.entities;
+package com.mdc.voodoocraft.entities;
 
 public class VCEntities {
 }

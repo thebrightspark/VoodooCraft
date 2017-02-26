@@ -1,4 +1,4 @@
-package com.mdc.VoodooCraft.blocks;
+package com.mdc.voodoocraft.blocks;
 
 public class VCBlocks {
 }

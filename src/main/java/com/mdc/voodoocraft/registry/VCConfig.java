@@ -1,4 +1,4 @@
-package com.mdc.voodoocraft;
+package com.mdc.voodoocraft.registry;
 
 import net.minecraftforge.common.config.Configuration;
 

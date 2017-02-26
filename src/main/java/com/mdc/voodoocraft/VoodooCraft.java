@@ -2,6 +2,7 @@ package com.mdc.voodoocraft;
 
 import com.mdc.voodoocraft.registry.Refs;
 import com.mdc.voodoocraft.proxy.Common;
+import com.mdc.voodoocraft.registry.VCConfig;
 import com.mdc.voodoocraft.registry.VoodooTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;

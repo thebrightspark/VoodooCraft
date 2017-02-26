@@ -42,8 +42,6 @@ forge-1\.10\.2-12\.18\.3\.2239-changelog\.txt
 
 *.txt
 
-build\.gradle
-
 gradlew
 
 gradlew\.bat

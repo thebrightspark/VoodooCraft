@@ -1,5 +1,7 @@
 package mdc.voodoocraft.init;
 
+import mdc.voodoocraft.items.ItemChalk;
+import mdc.voodoocraft.items.ItemDoll;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -9,7 +11,8 @@ public class VCItems
 {
     public static Map<String, Item> ITEMS = new HashMap<String, Item>();
 
-    public static Item Chalk;
+    public static Item doll;
+    public static Item chalk;
     
     private static void regItem(Item item)
     {
@@ -22,6 +25,7 @@ public class VCItems
         if(!ITEMS.isEmpty()) return;
 
         //Register items
-        regItem(Chalk);
+        regItem(doll = new ItemDoll());
+        regItem(chalk = new ItemChalk("chalk"));
     }
 }

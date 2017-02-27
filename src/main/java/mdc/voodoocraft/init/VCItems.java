@@ -12,7 +12,7 @@ public class VCItems
     public static Map<String, Item> ITEMS = new HashMap<String, Item>();
 
     public static Item doll;
-    public static Item chalk;
+    public static Item chalkbasic;
     
     private static void regItem(Item item)
     {
@@ -26,6 +26,6 @@ public class VCItems
 
         //Register item
         regItem(doll = new ItemDoll());
-        regItem(chalk = new ItemChalk());
+        regItem(chalkbasic = new ItemChalk("chalkbasic"));
     }
 }

@@ -15,7 +15,7 @@ public class VCBlocks
     public static Map<String, Block> BLOCKS = new HashMap<String, Block>();
     public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
 
-    public static Block chalksymbol;
+    public static Block chalkbasicsymbol;
     
     private static void regBlock(Block block)
     {
@@ -34,7 +34,7 @@ public class VCBlocks
         if(! BLOCKS.isEmpty()) return;
 
         //Register Blocks
-        regBlock(chalksymbol = new BlockChalk());
+        regBlock(chalkbasicsymbol = new BlockChalk("chalkbasicsymbol"));
     }
 
     public static void initTileEntities()

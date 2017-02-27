@@ -50,7 +50,7 @@ public class ItemDoll extends VCItem
     }
 
     /**
-     * Allows items to add custom lines of information to the mouseover description
+     * Allows item to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)

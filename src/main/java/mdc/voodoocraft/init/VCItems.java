@@ -24,8 +24,8 @@ public class VCItems
         //Make sure we only register once
         if(!ITEMS.isEmpty()) return;
 
-        //Register items
+        //Register item
         regItem(doll = new ItemDoll());
-        regItem(chalk = new ItemChalk("chalk"));
+        regItem(chalk = new ItemChalk());
     }
 }

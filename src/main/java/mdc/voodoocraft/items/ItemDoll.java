@@ -92,7 +92,7 @@ public class ItemDoll extends VCItem
     }
 
     /**
-     * Allows items to add custom lines of information to the mouseover description
+     * Allows item to add custom lines of information to the mouseover description
      */
     @Override
     @SideOnly(Side.CLIENT)

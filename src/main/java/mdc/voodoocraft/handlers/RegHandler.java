@@ -15,7 +15,7 @@ public class RegHandler
     @SubscribeEvent
     public static void initItems(RegistryEvent.Register<Item> event)
     {
-        //Register all items
+        //Register all item
         VCItems.init();
         IForgeRegistry<Item> registry = event.getRegistry();
         for(Item item : VCItems.ITEMS.values())

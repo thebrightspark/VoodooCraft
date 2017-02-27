@@ -8,11 +8,15 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import java.util.HashMap;
 import java.util.Map;
 
+import mdc.voodoocraft.blocks.BlockChalk;
+
 public class VCBlocks
 {
     public static Map<String, Block> BLOCKS = new HashMap<String, Block>();
     public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
 
+    public static Block chalksymbol;
+    
     private static void regBlock(Block block)
     {
         BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), block);
@@ -30,7 +34,7 @@ public class VCBlocks
         if(! BLOCKS.isEmpty()) return;
 
         //Register Blocks
-
+        regBlock(chalksymbol = new BlockChalk());
     }
 
     public static void initTileEntities()

@@ -1,7 +1,7 @@
 package mdc.voodoocraft.items;
 
 import mdc.voodoocraft.VoodooCraft;
-import mdc.voodoocraft.registry.Refs;
+import mdc.voodoocraft.util.Refs;
 import net.minecraft.item.Item;
 
 public class VCItem extends Item

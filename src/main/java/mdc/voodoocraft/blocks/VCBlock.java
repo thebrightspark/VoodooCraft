@@ -1,7 +1,7 @@
 package mdc.voodoocraft.blocks;
 
 import mdc.voodoocraft.VoodooCraft;
-import mdc.voodoocraft.registry.Refs;
+import mdc.voodoocraft.util.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

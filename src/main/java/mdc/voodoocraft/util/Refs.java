@@ -1,4 +1,4 @@
-package mdc.voodoocraft.registry;
+package mdc.voodoocraft.util;
 
 public class Refs {
 

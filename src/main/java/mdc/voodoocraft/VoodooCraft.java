@@ -1,12 +1,11 @@
 package mdc.voodoocraft;
 
-import mdc.voodoocraft.registry.Refs;
+import mdc.voodoocraft.util.Refs;
 import mdc.voodoocraft.proxy.CommonProxy;
-import mdc.voodoocraft.registry.VCConfig;
+import mdc.voodoocraft.handlers.ConfigHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -50,8 +49,7 @@ public class VoodooCraft {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e){
         log.info("voodoocraft Pre-Init");
-        Configuration config = new Configuration(e.getSuggestedConfigurationFile());
-		VCConfig.init(config);
+		ConfigHandler.init(e.getSuggestedConfigurationFile());
 
 		//New network channel ready for creating packets
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Refs.MODID);

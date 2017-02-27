@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mdc.voodoocraft.blocks.BlockChalk;
+import mdc.voodoocraft.blocks.BlockDollPedestal;
 
 public class VCBlocks
 {
@@ -16,6 +17,7 @@ public class VCBlocks
     public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
 
     public static Block chalkbasicsymbol;
+    public static Block dollpedestal;
     
     private static void regBlock(Block block)
     {
@@ -35,6 +37,7 @@ public class VCBlocks
 
         //Register Blocks
         regBlock(chalkbasicsymbol = new BlockChalk("chalkbasicsymbol"));
+        regBlock(dollpedestal = new BlockDollPedestal());
     }
 
     public static void initTileEntities()

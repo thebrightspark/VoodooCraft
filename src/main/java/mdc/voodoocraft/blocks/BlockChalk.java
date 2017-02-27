@@ -14,12 +14,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockChalk extends VCBlock{
+public class BlockChalk extends VCModelBlock{
 
 	private final static AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
 	public BlockChalk(String name) {
-		super(name, Material.CIRCUITS);
+		super(name, hitbox,Material.CIRCUITS);
 		this.setHardness(0);
 	}
 	
@@ -48,22 +48,4 @@ public class BlockChalk extends VCBlock{
 	{
 		return BlockRenderLayer.CUTOUT;
 	}
-
-	@Override
-	public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return hitbox;
-    }
 }

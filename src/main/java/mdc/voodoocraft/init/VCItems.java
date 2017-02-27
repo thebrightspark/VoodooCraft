@@ -9,6 +9,8 @@ public class VCItems
 {
     public static Map<String, Item> ITEMS = new HashMap<String, Item>();
 
+    public static Item Chalk;
+    
     private static void regItem(Item item)
     {
         ITEMS.put(item.getRegistryName().getResourcePath().toLowerCase(), item);
@@ -20,5 +22,6 @@ public class VCItems
         if(!ITEMS.isEmpty()) return;
 
         //Register items
+        regItem(Chalk);
     }
 }

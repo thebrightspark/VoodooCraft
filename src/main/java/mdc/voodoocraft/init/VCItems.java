@@ -26,6 +26,6 @@ public class VCItems
 
         //Register items
         regItem(doll = new ItemDoll());
-        regItem(chalk = new ItemChalk("chalk"));
+        regItem(chalk = new ItemChalk());
     }
 }

@@ -2,9 +2,12 @@ package mdc.voodoocraft.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockChalk extends VCBlock{
 
@@ -15,16 +18,18 @@ public class BlockChalk extends VCBlock{
 		this.setHardness(0);
 	}
 
-	@Override
-	public boolean isVisuallyOpaque()
-    {
-		return false;
-    }
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT;
+	}
+
 	@Override
 	public boolean isFullCube(IBlockState state)
     {
         return false;
     }
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
     {

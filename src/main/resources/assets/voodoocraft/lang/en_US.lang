@@ -1,1 +1,10 @@
-//Hey, localisations!
+#PARSE_ESCAPES
+
+#General
+itemGroup.tabVoodoo.name=VoodooCraft
+
+#Items
+
+#Blocks
+
+#Commands

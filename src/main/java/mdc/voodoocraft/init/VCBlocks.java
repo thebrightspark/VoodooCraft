@@ -1,48 +1,31 @@
 package mdc.voodoocraft.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import mdc.voodoocraft.blocks.BlockChalk;
 import mdc.voodoocraft.blocks.BlockDollPedestal;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class VCBlocks
 {
-    public static Map<String, Block> BLOCKS = new HashMap<String, Block>();
-    public static Map<String, ItemBlock> ITEM_BLOCKS = new HashMap<String, ItemBlock>();
 
-    public static Block chalkbasicsymbol;
-    public static Block dollpedestal;
-    
-    private static void regBlock(Block block)
-    {
-        BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), block);
-        ITEM_BLOCKS.put(block.getRegistryName().getResourcePath().toLowerCase(), (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName()));
-    }
+    public static Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
+    public static final Block DOLL_PEDESTAL = new BlockDollPedestal();
 
-    private static void regTE(Class<? extends TileEntity> teClass, Block block)
-    {
-        GameRegistry.registerTileEntity(teClass, block.getRegistryName().getResourcePath());
-    }
-
-    public static void init()
-    {
-        //Make sure we only register once
-        if(! BLOCKS.isEmpty()) return;
-
-        //Register Blocks
-        regBlock(chalkbasicsymbol = new BlockChalk("chalkbasicsymbol"));
-        regBlock(dollpedestal = new BlockDollPedestal());
-    }
-
-    public static void initTileEntities()
+    public static void registerTileEntities()
     {
         //Register Tile Entities
-
+    }
+    
+    public static void registerTileEntityRenders() {
+    	//register TESRs
+    }
+    
+    @SuppressWarnings("unused")
+	private static void regTE(Class<? extends TileEntity> teClass, Block block)
+    {
+    	ResourceLocation loc = block.getRegistryName();
+        GameRegistry.registerTileEntity(teClass, loc.getResourceDomain() + "_" + loc.getResourcePath());
     }
 }

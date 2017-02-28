@@ -2,30 +2,12 @@ package mdc.voodoocraft.init;
 
 import mdc.voodoocraft.items.ItemChalk;
 import mdc.voodoocraft.items.ItemDoll;
+import mdc.voodoocraft.util.EnumChalkType;
 import net.minecraft.item.Item;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class VCItems
 {
-    public static Map<String, Item> ITEMS = new HashMap<String, Item>();
-
-    public static Item doll;
-    public static Item chalkbasic;
+    public static final Item DOLL = new ItemDoll();
+    public static final Item CHALK_BASIC = new ItemChalk("chalkbasic", EnumChalkType.BASIC);
     
-    private static void regItem(Item item)
-    {
-        ITEMS.put(item.getRegistryName().getResourcePath().toLowerCase(), item);
-    }
-
-    public static void init()
-    {
-        //Make sure we only register once
-        if(!ITEMS.isEmpty()) return;
-
-        //Register item
-        regItem(doll = new ItemDoll());
-        regItem(chalkbasic = new ItemChalk("chalkbasic"));
-    }
 }

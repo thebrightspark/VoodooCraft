@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -16,10 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockChalk extends VCModelBlock{
 
-	private final static AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
+	private static final AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
 	public BlockChalk(String name) {
-		super(name, hitbox,Material.CIRCUITS);
+		super(name, Material.CIRCUITS);
 		this.setHardness(0);
 	}
 	
@@ -34,7 +35,7 @@ public class BlockChalk extends VCModelBlock{
 	
 	public boolean canBlockStay(World worldIn, BlockPos pos)
     {
-        return worldIn.getBlockState(pos.down()).isFullBlock();
+        return worldIn.isSideSolid(pos.down(), EnumFacing.UP);
     }
 	
 	@Override
@@ -47,5 +48,15 @@ public class BlockChalk extends VCModelBlock{
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return hitbox;
+	}
+	
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+		return NULL_AABB;
 	}
 }

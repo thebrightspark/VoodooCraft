@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class VCHexes
 {
+	@Deprecated //shouldn't we make a real registry?
     public static Map<String, Hex> HEXES = new HashMap<>();
 
     private static void regHex(Hex hex)

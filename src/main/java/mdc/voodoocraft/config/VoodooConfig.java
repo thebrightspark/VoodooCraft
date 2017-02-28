@@ -1,45 +1,64 @@
-package mdc.voodoocraft.handlers;
+package mdc.voodoocraft.config;
 
-import mdc.voodoocraft.util.Refs;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
-public class ConfigHandler
+import mdc.voodoocraft.Reference;
+
+@EventBusSubscriber
+public class VoodooConfig
 {
 	public static Configuration config;
 
 	public static void init(File configFile)
 	{
-		//Create configuration object from the given configuration file
-		if(config == null)
-		{
-			config = new Configuration(configFile);
-			loadConfiguration();
-		}
+		config = new Configuration(configFile); //Create configuration object from the given configuration file
 
-		//Not sure about these... someone else added them XD
+		syncConfiguration();
+		
+		/**CUSTOM CATEGORY COMMENTS**/
 		config.addCustomCategoryComment("Tweaks", "Tweak certian things");
-		config.addCustomCategoryComment("Items", "Set any values to false to disable the item");
 	}
 
-	private static void loadConfiguration()
+	private static void syncConfiguration()
 	{
-		//Load configs here
+		/**CONFIG START**/
 
 
 
+		/**CONFIG END**/
 		if(config.hasChanged())
 			config.save();
 	}
 
 	@SubscribeEvent
-	public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
+	public static void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-		if(event.getModID().equalsIgnoreCase(Refs.MODID))
+		if(event.getModID().equalsIgnoreCase(Reference.MODID))
 			//Resync configs
-			loadConfiguration();
+			syncConfiguration();
 	}
+
+	public static List<IConfigElement> getEntries() {
+        List<IConfigElement> entries = new ArrayList<IConfigElement>();
+        Set<String> categories = config.getCategoryNames();
+        Iterator<String> i = categories.iterator();
+        while (i.hasNext()) {
+            String categoryName = i.next();
+            ConfigCategory category = config.getCategory(categoryName);
+            entries.addAll(new ConfigElement(category).getChildElements());
+        }
+        return entries;
+    }
 }

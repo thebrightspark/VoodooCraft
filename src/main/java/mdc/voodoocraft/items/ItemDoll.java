@@ -24,7 +24,7 @@ public class ItemDoll extends VCItem
     {
         super("doll");
         setMaxStackSize(1);
-        setMaxDamage(1000);
+        setMaxDamage(100);
         setHasSubtypes(true);
     }
 
@@ -86,6 +86,7 @@ public class ItemDoll extends VCItem
         if(hex != null && hex.unlocName.equals("regen"))
         {
             playerIn.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100));
+            itemStackIn.damageItem(1, playerIn);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
         }
         return new ActionResult<>(EnumActionResult.PASS, itemStackIn);

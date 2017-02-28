@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class VCModelBlock extends VCBlock{
+public abstract class VCModelBlock extends VCBlock {
 
 	public VCModelBlock(String name, Material mat)
 	{

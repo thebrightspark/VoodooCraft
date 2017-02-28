@@ -14,8 +14,47 @@ public class VCHexes
         HEXES.put(hex.unlocName, hex);
     }
 
+    private static void regHex(String name)
+    {
+        regHex(new Hex().setUnlocName(name));
+    }
+
+    private static void regHexes(String... names)
+    {
+        for(String name : names)
+            regHex(name);
+    }
+
     static
     {
-        regHex(new Hex().setUnlocName("regen"));
+        regHexes("regen",
+                "feather",
+                "healthBind",
+                "greenFingers",
+                "death",
+                "fireAura",
+                "suffocation",
+                "teleport",
+                "spiritWalk",
+                "fertility",
+                "waterBreathing",
+                "protection",
+                "nap",
+                "insomnia",
+                "safety",
+                "danger",
+                "freeze",
+                "freeze",
+                "heatProtect",
+                "waterWalk",
+                "witherfy",
+                "zombify",
+                "timeSprint",
+                "lifeDrain",
+                "fromAshes",
+                "witherProtect",
+                "chestDeposit",
+                "loneWolf",
+                "intoxicate");
     }
 }

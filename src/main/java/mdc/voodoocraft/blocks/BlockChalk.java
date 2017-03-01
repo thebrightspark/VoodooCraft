@@ -20,7 +20,7 @@ public class BlockChalk extends VCModelBlock{
 	private static final AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
 	public BlockChalk(String name) {
-		super(name, Material.CIRCUITS);
+		super(name, Material.CIRCUITS, false);
 		this.setHardness(0);
 	}
 	

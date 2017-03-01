@@ -2,6 +2,7 @@ package mdc.voodoocraft.init;
 
 import mdc.voodoocraft.blocks.BlockChalk;
 import mdc.voodoocraft.blocks.BlockDollPedestal;
+import mdc.voodoocraft.tile.TileDollPedestal;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -16,6 +17,7 @@ public class VCBlocks
     public static void registerTileEntities()
     {
         //Register Tile Entities
+    	regTE(TileDollPedestal.class, DOLL_PEDESTAL);
     }
     
     public static void registerTileEntityRenders() {

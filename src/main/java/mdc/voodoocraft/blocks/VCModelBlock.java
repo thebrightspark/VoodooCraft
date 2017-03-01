@@ -15,9 +15,9 @@ public abstract class VCModelBlock extends VCBlock {
 	{
 		this(name, mat, true);
 	}
-	public VCModelBlock(String name, boolean hasItemBlock)
+	public VCModelBlock(String name)
 	{
-		super(name, Material.ROCK, true);
+		this(name, Material.ROCK);
 	}
 	
 	public VCModelBlock(String name, Material mat, boolean createItemBlock) {

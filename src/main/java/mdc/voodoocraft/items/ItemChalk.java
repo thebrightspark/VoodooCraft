@@ -20,8 +20,6 @@ public class ItemChalk extends VCItem{
 		super(name);
 		this.type = type;
 		this.setFull3D();
-		this.setMaxStackSize(1);
-		this.setMaxDamage(200);
 	}
 
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

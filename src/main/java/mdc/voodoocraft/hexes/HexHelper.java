@@ -15,7 +15,7 @@ public class HexHelper {
 		if(stack.hasTagCompound()) {
 			NBTTagCompound nbt = stack.getTagCompound();
 			if(nbt.hasKey(KEY_HEX, NBT.TAG_LIST)) {
-				//return new Hex(nbt.getCompoundTag(KEY_HEX));
+				return new Hex(nbt.getCompoundTag(KEY_HEX));
 			}
 		}
 		return null;

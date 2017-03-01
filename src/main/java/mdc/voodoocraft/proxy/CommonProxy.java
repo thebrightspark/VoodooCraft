@@ -1,6 +1,7 @@
 package mdc.voodoocraft.proxy;
 
 import mdc.voodoocraft.config.VoodooConfig;
+import mdc.voodoocraft.init.VCBlocks;
 import mdc.voodoocraft.init.VCEntities;
 import mdc.voodoocraft.init.VCRecipes;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -16,6 +17,7 @@ public class CommonProxy
     {
     	VoodooConfig.init(e.getSuggestedConfigurationFile());
         VCEntities.init();
+        VCBlocks.init();
     }
 
     public void init(FMLInitializationEvent e)

@@ -47,7 +47,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class VCBlocks
 {
 
-    public static Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
+    public static final Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
     public static final Block DOLL_PEDESTAL = new BlockDollPedestal();
 
     public static void registerTileEntities()

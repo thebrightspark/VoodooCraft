@@ -1,11 +1,9 @@
 package mdc.voodoocraft.items;
 
-import mdc.voodoocraft.blocks.BlockChalk;
 import mdc.voodoocraft.init.VCBlocks;
-import mdc.voodoocraft.init.VCItems;
+import mdc.voodoocraft.util.EnumChalkType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -15,21 +13,39 @@ import net.minecraft.world.World;
 
 public class ItemChalk extends VCItem{
 
-	public ItemChalk(String name)
+	private EnumChalkType type;
+	
+	public ItemChalk(String name, EnumChalkType type)
 	{
 		super(name);
+		this.type = type;
+		this.setFull3D();
+		this.setMaxStackSize(1);
+		this.setMaxDamage(200);
 	}
 
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-		if(!(stack.getItem() instanceof ItemChalk)||facing!=EnumFacing.UP||!worldIn.getBlockState(pos).isFullBlock()) return EnumActionResult.PASS;
+		if(!(stack.getItem() instanceof ItemChalk)||!worldIn.getBlockState(pos).isFullBlock()) return EnumActionResult.PASS;
 		
-		if(worldIn.getBlockState(pos.up()).getBlock()==Blocks.AIR)
+		if(worldIn.isAirBlock(pos.up()) && worldIn.isSideSolid(pos, EnumFacing.UP) && !worldIn.isRemote)
 		{
-			if(stack.getItem()==VCItems.chalkbasic)
-			worldIn.setBlockState(pos.up(), VCBlocks.chalkbasicsymbol.getDefaultState());
+			worldIn.setBlockState(pos.up(), this.getChalkBlock());
 			return EnumActionResult.SUCCESS;
 		}
         return EnumActionResult.PASS;
     }
+	
+	/**
+	 * calculate the chalk block based on the {@link EnumChalkType}
+	 * @return the appropriate {@link IBlockState}
+	 */
+	public IBlockState getChalkBlock() {
+		switch (this.type) {
+		case BASIC:
+			return VCBlocks.CHALK_BASIC_SYMBOL.getDefaultState();
+		}
+		return null;
+	}
+	
 }

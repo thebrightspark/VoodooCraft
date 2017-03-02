@@ -2,9 +2,9 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "parent": "block/cube",
     "textures": {
-        "particle": "voodoocraft:block/BasicChalkSymbol",
-        "0": "voodoocraft:block/ClearPixel",
-        "1": "voodoocraft:block/BasicChalkSymbol"
+        "particle": "voodoocraft:blocks/BasicChalkSymbol",
+        "0": "voodoocraft:blocks/ClearPixel",
+        "1": "voodoocraft:blocks/BasicChalkSymbol"
     },
     "elements": [
         {

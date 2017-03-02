@@ -1,5 +1,7 @@
 package mdc.voodoocraft.items;
 
+import java.util.List;
+
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.init.VCHexes;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,8 +17,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 public class ItemDoll extends VCItem
 {

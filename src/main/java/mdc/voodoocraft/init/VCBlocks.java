@@ -3,9 +3,11 @@ package mdc.voodoocraft.init;
 import mdc.voodoocraft.blocks.BlockChalk;
 import mdc.voodoocraft.blocks.BlockDollPedestal;
 import mdc.voodoocraft.tile.TileDollPedestal;
+import mdc.voodoocraft.tile.render.TileDollPedestalRender;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class VCBlocks
@@ -14,6 +16,11 @@ public class VCBlocks
     public static Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
     public static final Block DOLL_PEDESTAL = new BlockDollPedestal();
 
+    public static void init()
+    {
+    	registerTileEntities();
+    	registerTileEntityRenders();
+    }
     public static void registerTileEntities()
     {
         //Register Tile Entities
@@ -22,6 +29,7 @@ public class VCBlocks
     
     public static void registerTileEntityRenders() {
     	//register TESRs
+    	//ClientRegistry.bindTileEntitySpecialRenderer(TileDollPedestal.class, new TileDollPedestalRender());
     }
     
     @SuppressWarnings("unused")

@@ -34,12 +34,13 @@ public abstract class VCModelBlock extends VCBlock {
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return this.getBoundingBox(state, worldIn, pos).offset(pos);
 	}
-	
+	//Commented out because it was causing doll pedestal to have no physical hitbox.
+	/*
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return this.getBoundingBox(blockState, worldIn, pos).offset(pos);
 	}
-	
+	*/
 	@Override
 	public boolean isFullBlock(IBlockState state) {
 		return false;

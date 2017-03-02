@@ -22,9 +22,9 @@ public class HexHandler
     //Used to store the cooldown start times for the protection hex for every player that uses it
     private static HashMap<UUID, Long> protectionCooldowns = new HashMap<>();
 
-    private static ItemStack getPlayerHex(Entity entity, String hexName)
+    private static ItemStack getDollWithHex(Entity entity, String hexName)
     {
-        return entity == null || !(entity instanceof EntityPlayer) ? null : HexHelper.getPlayerHex((EntityPlayer) entity, hexName);
+        return entity == null || !(entity instanceof EntityPlayer) ? null : HexHelper.getDollWithHex((EntityPlayer) entity, hexName);
     }
 
     /**
@@ -34,7 +34,7 @@ public class HexHandler
     public static void fallEvent(LivingFallEvent event)
     {
         //Feather - Removes fall damage
-        ItemStack stack = getPlayerHex(event.getEntityLiving(), "feather");
+        ItemStack stack = getDollWithHex(event.getEntityLiving(), "feather");
         if(stack != null)
         {
             event.setDistance(0);
@@ -55,11 +55,11 @@ public class HexHandler
         ItemStack stack = null;
 
         //Fire Aura - Sets attacking entity on fire
-        if(event.getSource().getSourceOfDamage() != null && (stack = getPlayerHex(entity, "fireAura")) != null)
+        if(event.getSource().getSourceOfDamage() != null && (stack = getDollWithHex(entity, "fireAura")) != null)
             event.getSource().getSourceOfDamage().setFire(2);
 
         //Water Breathing - Uses player's hunger if possible when they're drowning
-        if(event.getSource().equals(DamageSource.drown) && (stack = getPlayerHex(entity, "waterBreathing")) != null)
+        if(event.getSource().equals(DamageSource.drown) && (stack = getDollWithHex(entity, "waterBreathing")) != null)
         {
             FoodStats food = ((EntityPlayer) entity).getFoodStats();
             if(food.getFoodLevel() > 0)
@@ -84,7 +84,7 @@ public class HexHandler
         ItemStack stack;
 
         //Protection - Absorbs some damage, with a 10s cooldown
-        if(event.getSource().getSourceOfDamage() != null && (stack = getPlayerHex(entity, "protection")) != null)
+        if(event.getSource().getSourceOfDamage() != null && (stack = getDollWithHex(entity, "protection")) != null)
         {
             UUID uuid = entity.getUniqueID();
             Long cooldownStart = protectionCooldowns.get(uuid);

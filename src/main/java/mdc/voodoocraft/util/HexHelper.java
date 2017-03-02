@@ -7,7 +7,9 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.hexes.Hex;
+import mdc.voodoocraft.items.ItemDoll;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -61,18 +63,20 @@ public class HexHelper {
 		return stack;
 	}
   
-  /**
+  	/**
 	 * Checks the player's inventory for a Doll with a certain Hex and returns it.
 	 */
-	public static ItemStack getPlayerHex(EntityPlayer player, String hexName)
+	public static ItemStack getDollWithHex(EntityPlayer player, String hexUnlocName)
 	{
 		InventoryPlayer playerInv = player.inventory;
 		for(ItemStack stack : playerInv.mainInventory)
 			if(stack != null && stack.getItem() instanceof ItemDoll)
 			{
-				Hex h = ItemDoll.getHex(stack);
-				if(h != null && h.unlocName.equals(hexName))
-					return stack;
+				List<Hex> hexes = getHexes(stack);
+				if(!hexes.isEmpty())
+					for(Hex h : hexes)
+						if(h.getEntry().getUnlocalizedName().equals(hexUnlocName))
+							return stack;
 			}
 		return null;
 	}

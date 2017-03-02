@@ -16,11 +16,6 @@ public class VCBlocks
     public static Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
     public static final Block DOLL_PEDESTAL = new BlockDollPedestal();
 
-    public static void init()
-    {
-    	registerTileEntities();
-    	registerTileEntityRenders();
-    }
     public static void registerTileEntities()
     {
         //Register Tile Entities
@@ -29,7 +24,7 @@ public class VCBlocks
     
     public static void registerTileEntityRenders() {
     	//register TESRs
-    	//ClientRegistry.bindTileEntitySpecialRenderer(TileDollPedestal.class, new TileDollPedestalRender());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileDollPedestal.class, new TileDollPedestalRender());
     }
     
     @SuppressWarnings("unused")

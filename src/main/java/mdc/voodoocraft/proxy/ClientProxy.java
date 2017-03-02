@@ -1,5 +1,6 @@
 package mdc.voodoocraft.proxy;
 
+import mdc.voodoocraft.init.VCBlocks;
 import mdc.voodoocraft.init.VCEntities;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -13,6 +14,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void preInit(FMLPreInitializationEvent e) {
         super.preInit(e);
+        VCBlocks.registerTileEntityRenders();
     }
 
     @Override

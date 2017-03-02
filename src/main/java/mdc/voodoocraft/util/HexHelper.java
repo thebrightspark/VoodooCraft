@@ -60,4 +60,20 @@ public class HexHelper {
 	    }
 		return stack;
 	}
+  
+  /**
+	 * Checks the player's inventory for a Doll with a certain Hex and returns it.
+	 */
+	public static ItemStack getPlayerHex(EntityPlayer player, String hexName)
+	{
+		InventoryPlayer playerInv = player.inventory;
+		for(ItemStack stack : playerInv.mainInventory)
+			if(stack != null && stack.getItem() instanceof ItemDoll)
+			{
+				Hex h = ItemDoll.getHex(stack);
+				if(h != null && h.unlocName.equals(hexName))
+					return stack;
+			}
+		return null;
+	}
 }

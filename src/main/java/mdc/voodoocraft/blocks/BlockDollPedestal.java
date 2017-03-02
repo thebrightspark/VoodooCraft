@@ -2,17 +2,12 @@ package mdc.voodoocraft.blocks;
 
 import javax.annotation.Nullable;
 
-import mdc.voodoocraft.init.VCItems;
 import mdc.voodoocraft.tile.TileDollPedestal;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -45,8 +40,7 @@ public class BlockDollPedestal extends VCModelBlock{
 	public boolean hasTileEntity(IBlockState state){return true;}
 	
 	/**
-	 * Puts dolls in and out of the pedestal. There is only one slot in the tile inventory so
-	 * 0 is used everywhere a slot is needed
+	 * Puts dolls in and out of the pedestal.
 	 * @return
 	 */
 	@Override
@@ -61,7 +55,6 @@ public class BlockDollPedestal extends VCModelBlock{
 			{
 				playerIn.setHeldItem(hand, tileinv.getStackInSlot(0));
 				tileinv.extractItem(0, tileinv.getStackInSlot(0).stackSize, false);
-				TileDollPedestal.removeFakeItem(worldIn, pos);
 				return true;
 			}
 		}else{
@@ -75,16 +68,28 @@ public class BlockDollPedestal extends VCModelBlock{
         return false;
     }
 	/**
-	 * Removes the fake item above the block
-	 * There is a much better way to do this. All of this should be re-written or removed
+	 * Drops item in the pedestal
 	 * @param worldIn
 	 * @param pos
 	 * @param state
 	 */
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-		//if(worldIn.isRemote) return;
-		TileDollPedestal.removeFakeItem(worldIn, pos);
+		if(!worldIn.isRemote)
+		{
+			TileEntity te = worldIn.getTileEntity(pos);
+			if(te!=null)
+			{
+				TileDollPedestal tile= (TileDollPedestal)te;
+				IItemHandler tileinv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				ItemStack stack = tileinv.getStackInSlot(0);
+				if(stack!=null)
+				{
+					EntityItem entItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
+					worldIn.spawnEntity(entItem);
+				}
+			}
+		}
 		super.breakBlock(worldIn, pos, state);
     }
 	/*

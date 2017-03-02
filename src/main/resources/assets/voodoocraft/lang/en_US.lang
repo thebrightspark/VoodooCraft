@@ -2,9 +2,15 @@
 
 #General
 itemGroup.tabVoodoo.name=VoodooCraft
+desc.hex.name=Current Hex applied:
 
 #Items
+item.doll.name=Voodoo Doll
 
 #Blocks
+
+#Hexes
+hex.regeneration.name=Regeneration
+desc.hex.regeneration.name=gives you regeneration!
 
 #Commands

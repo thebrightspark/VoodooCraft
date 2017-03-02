@@ -2,24 +2,30 @@ package mdc.voodoocraft.items;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import mdc.voodoocraft.handlers.RegHandler;
 import mdc.voodoocraft.hexes.Hex;
-import mdc.voodoocraft.init.VCHexes;
+import mdc.voodoocraft.hexes.HexEntry;
+import mdc.voodoocraft.util.HexHelper;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDoll extends VCItem
 {
+	public static final String KEY_HEX = "hex";
+	
     public ItemDoll()
     {
         super("doll");
@@ -28,68 +34,26 @@ public class ItemDoll extends VCItem
         setHasSubtypes(true);
     }
 
-    /**
-     * Returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
     {
-        //Dol without a Hex
-        subItems.add(new ItemStack(itemIn));
+        //Doll without a Hex
+        subItems.add(new ItemStack(this));
 
         //Add a doll for every Hex
-        ItemStack stack = new ItemStack(itemIn);
-        for(Hex hex : VCHexes.HEXES.values())
-        {
-            ItemStack dollWithHex = stack.copy();
-            addHex(dollWithHex, hex);
+        for(HexEntry entry : RegHandler.getHexRegistry().getValues()) {
+            ItemStack dollWithHex = HexHelper.setHexes(new ItemStack(itemIn), Lists.newArrayList(new Hex(entry)));
             subItems.add(dollWithHex);
         }
-    }
-
-    /**
-     * Adds a Hex to the given doll ItemStack
-     */
-    public static void addHex(ItemStack dollStack, Hex hex)
-    {
-        if(dollStack == null || !(dollStack.getItem() instanceof ItemDoll) || hex == null)
-            return;
-
-        NBTTagCompound stackNbt = dollStack.getTagCompound();
-        if(stackNbt == null)
-            stackNbt = new NBTTagCompound();
-        stackNbt.setTag("hex", hex.serializeNBT());
-        dollStack.setTagCompound(stackNbt);
-    }
-
-    /**
-     * Gets the Hex from the given doll ItemStack
-     */
-    public static Hex getHex(ItemStack dollStack)
-    {
-        if(dollStack == null || !(dollStack.getItem() instanceof ItemDoll))
-            return null;
-
-        NBTTagCompound stackNbt = dollStack.getTagCompound();
-        if(stackNbt == null)
-            return null;
-        Hex hex = new Hex();
-        hex.deserializeNBT((NBTTagCompound) stackNbt.getTag("hex"));
-        return hex;
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        Hex hex = getHex(itemStackIn);
-        if(hex != null && hex.unlocName.equals("regen"))
-        {
-            playerIn.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100));
-            itemStackIn.damageItem(1, playerIn);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
-        }
-        return new ActionResult<>(EnumActionResult.PASS, itemStackIn);
+        itemStackIn = HexHelper.activate(itemStackIn, worldIn, playerIn, hand);
+        playerIn.getCooldownTracker().setCooldown(this, 30); //1.5 seconds cooldown after use
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
     }
 
     /**
@@ -99,11 +63,21 @@ public class ItemDoll extends VCItem
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
-        tooltip.add("Current Hex applied:");
-        Hex hex = getHex(stack);
-        if(hex != null)
-            tooltip.add(hex.getDesc());
-        else
-            tooltip.add("None");
+    	super.addInformation(stack, playerIn, tooltip, advanced);
+    	List<Hex> hexes = HexHelper.getHexes(stack);
+    	tooltip.add(I18n.format("desc.hex.name"));
+    	if(!hexes.isEmpty()) {
+    		for(Hex h : hexes) {
+    			tooltip.add(h.getFormattedName());
+    			if(h.getDescription() != null && GuiScreen.isShiftKeyDown()) {
+    				tooltip.add(h.getDescription());
+    			}
+    		}
+   	 	}
+    	else {
+          	 tooltip.add(I18n.format("hex.none.name"));
+        }
+    	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + "Press SHIFT for more information");
     }
+    
 }

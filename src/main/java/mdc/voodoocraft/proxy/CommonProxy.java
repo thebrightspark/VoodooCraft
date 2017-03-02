@@ -1,6 +1,7 @@
 package mdc.voodoocraft.proxy;
 
 import mdc.voodoocraft.config.VoodooConfig;
+import mdc.voodoocraft.init.VCBlocks;
 import mdc.voodoocraft.init.VCEntities;
 import mdc.voodoocraft.init.VCRecipes;
 import mdc.voodoocraft.init.VCSoundHandler;
@@ -18,6 +19,7 @@ public class CommonProxy
     	VoodooConfig.init(e.getSuggestedConfigurationFile());
         VCEntities.init();
         VCSoundHandler.init();
+        VCBlocks.registerTileEntities();;
     }
 
     public void init(FMLInitializationEvent e)

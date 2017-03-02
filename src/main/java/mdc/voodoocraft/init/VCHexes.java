@@ -1,61 +1,38 @@
 package mdc.voodoocraft.init;
 
-import mdc.voodoocraft.hexes.Hex;
-
-import java.util.HashMap;
-import java.util.Map;
+import mdc.voodoocraft.hexes.HexEntry;
+import mdc.voodoocraft.hexes.HexRegeneration;
 
 public class VCHexes
 {
-	@Deprecated //shouldn't we make a real registry?
-    public static Map<String, Hex> HEXES = new HashMap<>();
-
-    private static void regHex(Hex hex)
-    {
-        HEXES.put(hex.unlocName, hex);
-    }
-
-    private static void regHex(String name)
-    {
-        regHex(new Hex().setUnlocName(name));
-    }
-
-    private static void regHexes(String... names)
-    {
-        for(String name : names)
-            regHex(name);
-    }
-
-    static
-    {
-        regHexes("regen",
-                "feather",
-                "healthBind",
-                "greenFingers",
-                "death",
-                "fireAura",
-                "suffocation",
-                "teleport",
-                "spiritWalk",
-                "fertility",
-                "waterBreathing",
-                "protection",
-                "nap",
-                "insomnia",
-                "safety",
-                "danger",
-                "freeze",
-                "freeze",
-                "heatProtect",
-                "waterWalk",
-                "witherfy",
-                "zombify",
-                "timeSprint",
-                "lifeDrain",
-                "fromAshes",
-                "witherProtect",
-                "chestDeposit",
-                "loneWolf",
-                "intoxicate");
-    }
+	public static final HexEntry REGENERATION = new HexRegeneration();
+	public static final HexEntry FEATHER = new HexEntry("feather");
+	public static final HexEntry HEALTH_BIND = new HexEntry("health_bind");
+	public static final HexEntry GREEN_FINGERS = new HexEntry("green_fingers");
+	public static final HexEntry DEATH = new HexEntry("death");
+	public static final HexEntry FIRE_AURA = new HexEntry("fire_aura");
+	public static final HexEntry SUFFOCATION = new HexEntry("suffocation");
+	public static final HexEntry TELEPORT = new HexEntry("teleport");
+	public static final HexEntry SPIRIT_WALK = new HexEntry("spirit_walk");
+	public static final HexEntry FERTILITY = new HexEntry("fertiliy");
+	public static final HexEntry WATER_BREATHING = new HexEntry("water_breathing");
+	public static final HexEntry PROTECTION = new HexEntry("protection");
+	public static final HexEntry NAP = new HexEntry("nap");
+	public static final HexEntry INSOMNIA = new HexEntry("insomnia");
+	public static final HexEntry SAFETY = new HexEntry("safety");
+	public static final HexEntry DANGER = new HexEntry("danger"); //what would this do??
+	public static final HexEntry FREEZE = new HexEntry("freeze");
+	public static final HexEntry FIRE_PROTECTION = new HexEntry("fire_protection");
+	public static final HexEntry WATER_WALK = new HexEntry("water_walk");
+	public static final HexEntry WITHER = new HexEntry("wither");
+	public static final HexEntry ZOMBIE = new HexEntry("zombie");
+	public static final HexEntry TIME_SPRINT = new HexEntry("time_sprint"); //HOW would we do this?
+	public static final HexEntry LIFE_DRAIN = new HexEntry("life_drain"); //maybe make this slightly more powerful than regeneration, but have it only work for hostile mobs or players 
+	public static final HexEntry FROM_ASHES = new HexEntry("from_ashes"); //what is this??
+	public static final HexEntry WITHER_PROTECTION = new HexEntry("wither_protection");
+	public static final HexEntry CHEST_DEPOSIT = new HexEntry("chest_deposit"); //???
+	public static final HexEntry LONE_WOLF = new HexEntry("lone_wolf"); //???
+	public static final HexEntry INTOXICATE = new HexEntry("intoxicate"); //???
+	
+	
 }

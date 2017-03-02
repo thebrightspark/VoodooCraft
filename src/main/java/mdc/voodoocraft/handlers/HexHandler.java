@@ -1,6 +1,6 @@
 package mdc.voodoocraft.handlers;
 
-import mdc.voodoocraft.hexes.HexHelper;
+import mdc.voodoocraft.util.HexHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,13 +1,15 @@
-package mdc.voodoocraft.hexes;
+package mdc.voodoocraft.crafting;
 
 import java.util.Arrays;
 
+import mdc.voodoocraft.hexes.HexEntry;
+
 public class HexRecipe
 {
-    private final Hex hexOutput;
+    private final HexEntry hexOutput;
     public final String[] totemGlyphLayoutInput;
 
-    public HexRecipe(Hex hexOutput, String... totemGlyphLayout)
+    public HexRecipe(HexEntry hexOutput, String... totemGlyphLayout)
     {
         this.hexOutput = hexOutput;
         this.totemGlyphLayoutInput = new String[totemGlyphLayout.length];
@@ -51,7 +53,7 @@ public class HexRecipe
     /**
      * Gets the Hex output of this recipe
      */
-    public Hex getHexOutput()
+    public HexEntry getHexOutput()
     {
         return hexOutput;
     }

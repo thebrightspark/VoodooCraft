@@ -1,7 +1,9 @@
-package mdc.voodoocraft.hexes;
+package mdc.voodoocraft.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mdc.voodoocraft.hexes.HexEntry;
 
 public class HexCraftingManager
 {
@@ -19,7 +21,7 @@ public class HexCraftingManager
         RECIPES.add(recipe);
     }
 
-    public static void addRecipe(Hex hexOutput, String... totemGlyphLayout)
+    public static void addRecipe(HexEntry hexOutput, String... totemGlyphLayout)
     {
         addRecipe(new HexRecipe(hexOutput, totemGlyphLayout));
     }

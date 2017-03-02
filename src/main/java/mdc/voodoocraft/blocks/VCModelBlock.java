@@ -9,17 +9,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class VCModelBlock extends VCBlock{
+public abstract class VCModelBlock extends VCBlock {
 
 	public VCModelBlock(String name, Material mat)
 	{
-		super(name, mat, true);
+		this(name, mat, true);
 	}
-	public VCModelBlock(String name)
+	public VCModelBlock(String name, boolean hasItemBlock)
 	{
-		this(name, Material.ROCK);
+		super(name, Material.ROCK, true);
 	}
 	
+	public VCModelBlock(String name, Material mat, boolean createItemBlock) {
+		super(name, mat, createItemBlock);
+	}
 	/**
 	 * @return the AABB of the block, <b>not</b> the final AABB in the world.
 	 */
@@ -31,12 +34,13 @@ public abstract class VCModelBlock extends VCBlock{
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return this.getBoundingBox(state, worldIn, pos).offset(pos);
 	}
-	
+	//Commented out because it was causing doll pedestal to have no physical hitbox.
+	/*
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return this.getBoundingBox(blockState, worldIn, pos).offset(pos);
 	}
-	
+	*/
 	@Override
 	public boolean isFullBlock(IBlockState state) {
 		return false;

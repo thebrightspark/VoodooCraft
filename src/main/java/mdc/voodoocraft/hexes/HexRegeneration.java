@@ -1,0 +1,21 @@
+package mdc.voodoocraft.hexes;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.World;
+
+public class HexRegeneration extends HexEntry {
+
+	public HexRegeneration() {
+		super("regeneration");
+	}
+	
+	@Override
+	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength) {
+		player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 3)); //about 1.5 hearts per use
+		return super.activeUse(stackIn, world, player, hand, strength);
+	}
+}

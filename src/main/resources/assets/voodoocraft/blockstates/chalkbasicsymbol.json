@@ -4,11 +4,11 @@
     "model": "voodoocraft:chalkbasicsymbol"
   },
   "variants": {
-        "normal": {
-            "model": "voodoocraft:chalkbasicsymbol"
-        },
-        "inventory": {
-            "model": "voodoocraft:chalkbasicsymbol"
-        }
+        "normal": [
+        	{"model": "voodoocraft:chalkbasicsymbol"},
+        	{"model": "voodoocraft:chalkbasicsymbol", "y": 90 },
+        	{"model": "voodoocraft:chalkbasicsymbol", "y": 180 },
+        	{"model": "voodoocraft:chalkbasicsymbol", "y": 270 }
+        ]
     }
 }

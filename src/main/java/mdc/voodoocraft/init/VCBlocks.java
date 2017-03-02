@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class VCBlocks
 {
 
-    public static Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
+    public static final Block CHALK_BASIC_SYMBOL = new BlockChalk("chalkbasicsymbol");
     public static final Block DOLL_PEDESTAL = new BlockDollPedestal();
     public static final Block SHRINE = new BlockShrine();
 
@@ -29,7 +29,6 @@ public class VCBlocks
     	ClientRegistry.bindTileEntitySpecialRenderer(TileDollPedestal.class, new TileDollPedestalRender());
     }
     
-    @SuppressWarnings("unused")
 	private static void regTE(Class<? extends TileEntity> teClass, Block block)
     {
     	ResourceLocation loc = block.getRegistryName();

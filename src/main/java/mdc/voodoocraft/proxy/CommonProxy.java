@@ -19,7 +19,7 @@ public class CommonProxy
     	VoodooConfig.init(e.getSuggestedConfigurationFile());
         VCEntities.init();
         VCSoundHandler.init();
-        VCBlocks.init();
+        VCBlocks.registerTileEntities();;
     }
 
     public void init(FMLInitializationEvent e)

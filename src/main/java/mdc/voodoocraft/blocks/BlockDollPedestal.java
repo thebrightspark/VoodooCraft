@@ -86,7 +86,7 @@ public class BlockDollPedestal extends VCModelBlock{
 				if(stack!=null)
 				{
 					EntityItem entItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
-					worldIn.spawnEntity(entItem);
+					worldIn.spawnEntityInWorld(entItem);
 				}
 			}
 		}

@@ -27,7 +27,7 @@ public class VCEventHandler {
     @SubscribeEvent
     public void fluidWalking(TickEvent.PlayerTickEvent e) {
         BlockPos pos = e.player.getPosition();
-        World world = e.player.worldObj;
+        World world = e.player.world;
         Entity player = e.player;
 
         if (world.getBlockState(pos.down()).getMaterial() == Material.WATER) {
@@ -69,6 +69,6 @@ public class VCEventHandler {
         //}
 
         EntityItem entity = new EntityItem(player.getEntityWorld(), livingtarget.getPosition().getX(), livingtarget.getPosition().getY(), livingtarget.getPosition().getZ(), hair);
-        player.getEntityWorld().spawnEntityInWorld(entity);
+        player.getEntityWorld().spawnEntity(entity);
     }
 }

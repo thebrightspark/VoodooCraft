@@ -88,7 +88,7 @@ public class HexHandler
         {
             UUID uuid = entity.getUniqueID();
             Long cooldownStart = protectionCooldowns.get(uuid);
-            long worldTime = entity.worldObj.getTotalWorldTime();
+            long worldTime = entity.world.getTotalWorldTime();
 
             //Check if hex is ready to protect
             if(cooldownStart == null || (worldTime - cooldownStart) >= 200) //200 ticks == 10 seconds

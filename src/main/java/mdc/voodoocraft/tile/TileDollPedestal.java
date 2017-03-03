@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -27,7 +28,7 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 	@Override
 	public void update()
 	{
-		if(worldObj.isRemote) return;
+		if(this.world.isRemote) return;
 		IItemHandler tileinv = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 		ItemStack stack = tileinv.getStackInSlot(0);
 		if(stack!=null&&stack.getItem() instanceof ItemDoll)
@@ -40,12 +41,15 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 	@Override
 	public void onLoad()
     {
+		/*
+		if(DimensionManager.getWorld(0).equals(this.getWorld())) System.out.println("It has the world");;
         TileDollPedestal tile = (TileDollPedestal)this.getWorld().getTileEntity(this.getPos());
         IItemHandler tileinv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         if(tileinv.getStackInSlot(0)!=null)
         {
         	//TODO Add tile entity to list
         }
+        */
     }
 	
     private ItemStackHandler itemStackHandler = 

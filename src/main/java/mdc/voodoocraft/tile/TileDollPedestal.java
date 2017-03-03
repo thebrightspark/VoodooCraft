@@ -27,7 +27,7 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 	@Override
 	public void update()
 	{
-		if(world.isRemote) return;
+		if(worldObj.isRemote) return;
 		IItemHandler tileinv = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 		ItemStack stack = tileinv.getStackInSlot(0);
 		if(stack!=null&&stack.getItem() instanceof ItemDoll)

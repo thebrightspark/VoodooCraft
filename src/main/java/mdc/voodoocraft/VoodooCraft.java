@@ -1,5 +1,7 @@
 package mdc.voodoocraft;
 
+import mdc.voodoocraft.handlers.VCEventHandler;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
 import mdc.voodoocraft.proxy.CommonProxy;
@@ -39,6 +41,7 @@ public class VoodooCraft {
     public void postInit(FMLPostInitializationEvent e){
         log.info("voodoocraft Post-Init");
         proxy.postInit(e);
+        MinecraftForge.EVENT_BUS.register(new VCEventHandler());
     }
     
     @Mod.EventHandler

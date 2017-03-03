@@ -48,4 +48,14 @@ public class NBTHelper
 		return null;
 	}
 
+	//method for checking and creating an NBTTag
+	public static NBTTagCompound getTagCompound(ItemStack stack) {
+		NBTTagCompound tag = stack.getTagCompound();
+		if (tag == null) {
+			tag = new NBTTagCompound();
+			stack.setTagCompound(tag);
+		}
+		return tag;
+	}
+
 }

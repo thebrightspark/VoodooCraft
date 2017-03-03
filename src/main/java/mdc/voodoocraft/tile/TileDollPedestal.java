@@ -32,10 +32,21 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 		ItemStack stack = tileinv.getStackInSlot(0);
 		if(stack!=null&&stack.getItem() instanceof ItemDoll)
 		{
-			//Tick the doll inside
+			//TODO Tick the doll inside
 		}
 			
 	}
+	
+	@Override
+	public void onLoad()
+    {
+        TileDollPedestal tile = (TileDollPedestal)this.getWorld().getTileEntity(this.getPos());
+        IItemHandler tileinv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        if(tileinv.getStackInSlot(0)!=null)
+        {
+        	//TODO Add tile entity to list
+        }
+    }
 	
     private ItemStackHandler itemStackHandler = 
     		new ItemStackHandler(1){

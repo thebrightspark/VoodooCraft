@@ -1,6 +1,5 @@
 package mdc.voodoocraft.handlers;
 
-
 import mdc.voodoocraft.init.VCItems;
 import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.block.material.Material;
@@ -17,11 +16,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class VCEventHandler {
 
     @SubscribeEvent

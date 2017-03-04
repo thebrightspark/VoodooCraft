@@ -37,7 +37,7 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 		}
 			
 	}
-	
+	/*
 	@Override
 	public void onLoad()
     {
@@ -48,7 +48,7 @@ public class TileDollPedestal extends TileEntity implements ITickable{
         	//TODO Add tile entity to list
         }
     }
-	
+	*/
     private ItemStackHandler itemStackHandler = 
     		new ItemStackHandler(1){
         @Override

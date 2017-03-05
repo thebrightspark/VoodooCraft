@@ -35,6 +35,9 @@ public class VoodooCraft {
     public void init(FMLInitializationEvent e){
         log.info("voodoocraft Init");
         proxy.init(e);
+
+
+        MinecraftForge.EVENT_BUS.register(new VCEventHandler());
     }
 
     @Mod.EventHandler

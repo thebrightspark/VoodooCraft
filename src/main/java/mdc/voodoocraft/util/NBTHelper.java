@@ -1,12 +1,12 @@
-//Credits to Pahimar for this class
-
 package mdc.voodoocraft.util;
+
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -15,38 +15,41 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 public class NBTHelper
 {
 	public static final String KEY_OWNER = "owner";
+	public static final String KEY_OWNER_NAME = "owner_name";
 	
     /**
-     * Initializes the NBT Tag Compound for the given ItemStack if it does not exist already
-     *
-     * @param itemStack
-     *         The ItemStack for which its NBT Tag Compound is being checked for initialization
+     * saves the {@link UUID} and {@code NAME} of an entity to an ItemStack.
+     * @param stack The {@link ItemStack} to set the {@link NBTTagCompound}
+     * @param entity The owner {@link Entity}
      */
-    private static void initNBTTagCompound(@Nonnull ItemStack itemStack)
-    {
-        if (!itemStack.hasTagCompound())
-        {
-            itemStack.setTagCompound(new NBTTagCompound());
-        }
-    }
-
-    public static void setOwner(ItemStack stack, EntityPlayer player)
+    public static void setOwnerTag(ItemStack stack, EntityLivingBase entity)
 	{
-    	initNBTTagCompound(stack);
-    	stack.getTagCompound().setTag(KEY_OWNER, NBTUtil.createUUIDTag(player.getPersistentID()));
+    	NBTTagCompound stackNBT = getTagCompound(stack);
+    	stackNBT.setTag(KEY_OWNER, NBTUtil.createUUIDTag(entity.getUniqueID())); //TODO: getPersistentID() doesn't work for non-player entities
+    	stackNBT.setString(KEY_OWNER_NAME, entity.getName());
+    	stack.setTagCompound(stackNBT);
 	}
 	
     @Nullable
-	public static EntityPlayerMP getOwner(@Nonnull ItemStack stack)
+	public static Entity getOwner(@Nonnull ItemStack stack)
 	{
-    	initNBTTagCompound(stack);
-		NBTTagCompound stackNBT = stack.getTagCompound();
+		NBTTagCompound stackNBT = getTagCompound(stack);
 		if(stackNBT.hasKey(KEY_OWNER)) {
 			//FIXME: check if player is online!
-			return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(NBTUtil.getUUIDFromTag(stackNBT.getCompoundTag(KEY_OWNER)));
+			return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityFromUuid(NBTUtil.getUUIDFromTag(stackNBT.getCompoundTag(KEY_OWNER)));
 		}
 		return null;
 	}
+    
+    public static String getOwnerName(ItemStack stack) {
+		String name = getTagCompound(stack).getString(KEY_OWNER_NAME);
+		return name.equals("") ? "INVALID" : name;
+	}
+    
+    @Nonnull
+    public static UUID getOwnerUUID(ItemStack stack) {
+    	return NBTUtil.getUUIDFromTag(getTagCompound(stack).getCompoundTag(KEY_OWNER));
+    }
 
 	//method for checking and creating an NBTTag
 	public static NBTTagCompound getTagCompound(ItemStack stack) {
@@ -57,5 +60,7 @@ public class NBTHelper
 		}
 		return tag;
 	}
+
+	
 
 }

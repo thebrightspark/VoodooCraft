@@ -12,10 +12,10 @@ public class VCSoundHandler {
     public static SoundEvent summonritual;
     public static SoundEvent templeritual;
 
-    private static int size = 0;
+    private static int ID = 0;
 
     public static void init(){
-        size = SoundEvent.REGISTRY.getKeys().size();
+        ID = SoundEvent.REGISTRY.getKeys().size();
         lightritual = register("lightritual");
         rainritual = register("rainritual");
         spiritguideritual = register("spiritguideritual");
@@ -26,8 +26,7 @@ public class VCSoundHandler {
     public static SoundEvent register(String name){
         ResourceLocation loc = new ResourceLocation(Reference.MODID, name);
         SoundEvent sEvent = new SoundEvent(loc);
-        SoundEvent.REGISTRY.register(size, loc, sEvent);
-        size++;
+        SoundEvent.REGISTRY.register(ID++, loc, sEvent);
 
         return sEvent;
     }

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -20,14 +19,14 @@ public class MagmaBlockToCream {
 	@SubscribeEvent
 	public static void rightClickBlock(PlayerInteractEvent e)
 	{
-		if(!e.getWorld().isRemote&&e.getHand()==EnumHand.MAIN_HAND&&e.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND)==null)
+		EntityPlayer player = e.getEntityPlayer();
+		if(!e.getWorld().isRemote && player.getHeldItem(e.getHand()) == null)
 		{
-			EntityPlayer player = e.getEntityPlayer();
 			World world = e.getWorld();
 			BlockPos pos = e.getPos();
-			if(world.getBlockState(pos).getBlock()==Blocks.MAGMA&&hasGlyphs(world,pos))
+			if(world.getBlockState(pos).getBlock() == Blocks.MAGMA && hasGlyphs(world, pos))
 			{
-				world.destroyBlock(pos, false);
+				world.setBlockToAir(pos); //TODO: custom sound
 				EntityItem entitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.MAGMA_CREAM, 2));
 				world.spawnEntity(entitem);
 			}
@@ -46,16 +45,15 @@ public class MagmaBlockToCream {
 	 */
 	public static boolean hasGlyphs(World world, BlockPos pos)
 	{
-		Block basic = VCBlocks.CHALK_BASIC_SYMBOL; //TODO Change glyph(s) for this ritual?
+		Block basic = VCBlocks.GLYPH; //TODO Change glyphs to fire type (use blockstate property BlockGlyph.TYPE!)
 		Block magma = Blocks.MAGMA;
-		if(world.getBlockState(pos.east()).getBlock()==basic&&
+		return (world.getBlockState(pos.east()).getBlock()==basic&&
 				world.getBlockState(pos.west()).getBlock()==basic&&
 				world.getBlockState(pos.north()).getBlock()==basic&&
 				world.getBlockState(pos.south()).getBlock()==basic&&
 				world.getBlockState(pos.south().east()).getBlock()==magma&&
 				world.getBlockState(pos.south().west()).getBlock()==magma&&
 				world.getBlockState(pos.north().east()).getBlock()==magma&&
-				world.getBlockState(pos.north().west()).getBlock()==magma) return true;
-		return false;
+				world.getBlockState(pos.north().west()).getBlock()==magma);
 	}
 }

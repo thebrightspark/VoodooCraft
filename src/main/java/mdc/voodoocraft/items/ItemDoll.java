@@ -56,9 +56,6 @@ public class ItemDoll extends VCItem
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
     }
 
-    /**
-     * Allows item to add custom lines of information to the mouseover description
-     */
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
@@ -77,7 +74,7 @@ public class ItemDoll extends VCItem
     	else {
           	 tooltip.add(I18n.format("hex.none.name"));
         }
-    	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + "Press SHIFT for more information");
+    	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + I18n.format("press.for.info.name", "SHIFT")); //TODO: configurable key?
     }
     
 }

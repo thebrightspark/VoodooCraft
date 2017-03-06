@@ -4,6 +4,7 @@ import java.util.List;
 
 import mdc.voodoocraft.init.VCItems;
 import mdc.voodoocraft.items.ItemChalk;
+import mdc.voodoocraft.tile.TileEntityGlyph;
 import mdc.voodoocraft.util.EnumGlyphType;
 import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.block.Block;
@@ -16,6 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -34,6 +36,17 @@ public class BlockGlyph extends VCModelBlock{
 	public BlockGlyph() {
 		super("glyph", Material.CIRCUITS, false);
 		this.setHardness(0);
+	}
+	
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return state.getValue(TYPE) == EnumGlyphType.DEATH;
+	}
+	
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		if(state.getValue(TYPE) == EnumGlyphType.DEATH) return new TileEntityGlyph();
+		return super.createTileEntity(world, state);
 	}
 	
 	@Override
@@ -63,6 +76,11 @@ public class BlockGlyph extends VCModelBlock{
 	}
 	
 	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+		return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
+	}
+	
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
 		if(!canBlockStay(worldIn, pos))
@@ -73,7 +91,7 @@ public class BlockGlyph extends VCModelBlock{
 	
 	public boolean canBlockStay(World worldIn, BlockPos pos)
     {
-        return worldIn.isSideSolid(pos.down(), EnumFacing.UP);
+        return worldIn.isSideSolid(pos.down(), EnumFacing.UP, false);
     }
 	
 	@Override

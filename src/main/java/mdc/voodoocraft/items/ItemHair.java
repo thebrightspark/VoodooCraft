@@ -1,18 +1,19 @@
 package mdc.voodoocraft.items;
 
 
+import java.util.List;
+
 import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.List;
-
 
 public class ItemHair extends VCItem {
-    public ItemHair(String name) {
-        super(name);
+    public ItemHair() {
+        super("hair");
     }
     @Override
     public boolean hasEffect(ItemStack stack) {
@@ -21,12 +22,9 @@ public class ItemHair extends VCItem {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("Hair from: "+ NBTHelper.getTagCompound(stack).getString("entityName"));
+        tooltip.add(I18n.format("hair.type.name", NBTHelper.getOwnerName(stack)));
         if (GuiScreen.isShiftKeyDown()) {
-            if(stack.getTagCompound()!=null)
-            {
-                tooltip.add("UUID: "+ NBTHelper.getTagCompound(stack).getUniqueId("entityUUID"));
-            }
-        } else tooltip.add(TextFormatting.AQUA + "Press SHIFT for more information");
+        	tooltip.add("UUID: "+ NBTHelper.getOwnerUUID(stack));
+        } else tooltip.add(TextFormatting.AQUA + I18n.format("press.for.info.name", "SHIFT")); //TODO: configurable key?
     }
 }

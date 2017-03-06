@@ -2,9 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "parent": "block/cube",
     "textures": {
-        "particle": "voodoocraft:blocks/BasicChalkSymbol",
-        "0": "voodoocraft:blocks/ClearPixel",
-        "1": "voodoocraft:blocks/BasicChalkSymbol"
+        "particle": "voodoocraft:blocks/glyph_basic",
+        "0": "voodoocraft:blocks/clear_pixel"
     },
     "elements": [
         {
@@ -16,8 +15,8 @@
                 "east": { "texture": "#0", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
                 "south": { "texture": "#0", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
                 "west": { "texture": "#0", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
-                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+                "up": { "texture": "#symbol", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#symbol", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
             }
         }
     ]

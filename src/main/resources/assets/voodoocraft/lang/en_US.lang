@@ -14,3 +14,26 @@ hex.regeneration.name=Regeneration
 desc.hex.regeneration.name=gives you regeneration!
 
 #Commands
+
+#Misc
+press.for.info.name=Press %s for more information
+hair.type.name=Hair from: %s
+
+#Glyphs
+type.glyph.0.name=BASIC
+type.glyph.1.name=AIR
+type.glyph.2.name=EARTH
+type.glyph.3.name=FIRE
+type.glyph.4.name=WATER
+type.glyph.5.name=LIFE
+type.glyph.6.name=DEATH
+type.glyph.7.name=LIGHT
+type.glyph.8.name=DARK
+type.glyph.9.name=TIME
+type.glyph.10.name=SPEED
+type.glyph.11.name=POWER
+type.glyph.12.name=LINK
+type.glyph.13.name=none
+type.glyph.14.name=none
+type.glyph.15.name=none
+

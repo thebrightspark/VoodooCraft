@@ -63,6 +63,11 @@ public class BlockGlyph extends VCModelBlock{
 	}
 	
 	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+		return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
+	}
+	
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
 		if(!canBlockStay(worldIn, pos))
@@ -73,7 +78,7 @@ public class BlockGlyph extends VCModelBlock{
 	
 	public boolean canBlockStay(World worldIn, BlockPos pos)
     {
-        return worldIn.isSideSolid(pos.down(), EnumFacing.UP);
+        return worldIn.isSideSolid(pos.down(), EnumFacing.UP, false);
     }
 	
 	@Override

@@ -4,6 +4,7 @@ import mdc.voodoocraft.blocks.BlockGlyph;
 import mdc.voodoocraft.blocks.BlockDollPedestal;
 import mdc.voodoocraft.blocks.BlockShrine;
 import mdc.voodoocraft.tile.TileDollPedestal;
+import mdc.voodoocraft.tile.TileEntityGlyph;
 import mdc.voodoocraft.tile.render.TileDollPedestalRender;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -22,6 +23,7 @@ public class VCBlocks
     {
         //Register Tile Entities
     	regTE(TileDollPedestal.class, DOLL_PEDESTAL);
+    	regTE(TileEntityGlyph.class, GLYPH);
     }
     
     public static void registerTileEntityRenders() {

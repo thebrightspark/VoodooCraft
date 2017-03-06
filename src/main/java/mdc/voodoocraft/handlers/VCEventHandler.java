@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class VCEventHandler {
 
     @SubscribeEvent
-    public void fluidWalking(TickEvent.PlayerTickEvent e) {
+    public static void fluidWalking(TickEvent.PlayerTickEvent e) {
         BlockPos pos = e.player.getPosition();
         World world = e.player.world;
         Entity player = e.player;

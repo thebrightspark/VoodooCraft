@@ -28,13 +28,10 @@ public class ItemShard extends VCItem {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                    if (entityIn == null)
+                    if(checkNBTInfo(stack))
                     {
-                        return 1.0F;
-                    }else if(checkNBTInfo(stack)){
                         return 0.0F;
-                    }
-                    else{
+                    }else{
                         return 1.0F;
                     }
             }
@@ -59,6 +56,7 @@ public class ItemShard extends VCItem {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target,
                                             EnumHand hand) {
         World world = player.getEntityWorld();
+
         if (!world.isRemote) {
             if (checkNBTInfo(stack)) {
                 if (target != null) {
@@ -69,7 +67,7 @@ public class ItemShard extends VCItem {
             }
         }
         return false;
-    }
+}
 
     @Override
     public boolean hasEffect(ItemStack stack) {

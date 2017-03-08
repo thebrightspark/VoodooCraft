@@ -17,7 +17,8 @@ desc.hex.regeneration.name=gives you regeneration!
 
 #Misc
 press.for.info.name=Press %s for more information
-hair.type.name=Hair from: %s
+shard.type.name=Shard Bound To: %s
+shard.type.empty.name=Empty Shard
 
 #Glyphs
 type.glyph.0.name=BASIC

@@ -71,6 +71,14 @@ public class ItemShard extends VCItem {
         return false;
     }
 
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        if(!checkNBTInfo(stack)){
+            return true;
+        }
+        return super.hasEffect(stack);
+    }
+
     private boolean checkNBTInfo(ItemStack stack){
         if(NBTHelper.getOwnerName(stack).contains("INVALID"))
         {

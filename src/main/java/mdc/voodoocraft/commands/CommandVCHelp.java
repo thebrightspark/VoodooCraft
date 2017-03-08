@@ -2,6 +2,7 @@ package mdc.voodoocraft.commands;
 
 import java.util.*;
 
+import mdc.voodoocraft.config.*;
 import net.minecraft.command.*;
 import net.minecraft.server.*;
 import net.minecraft.util.math.*;
@@ -35,23 +36,56 @@ public class CommandVCHelp extends CommandBase{
 			
 			if(args[0].equals("help")){
 				if(args[1].equals("hexes")){
-					sendMessageToChat(sender, TextFormatting.LIGHT_PURPLE + 
-							"Hexes are what you use to cast either a light or a dark \'spell\' on an entity. Hexes are categorized into two different kinds of hexes, as suggested: light and dark." +
-							"Light hexes consist of any hexes that don\'t cause any kind of harm to another entity. Dark hexes consist of any hexes that DO cause harm to another entity." +
-							"To apply a hex, you must first have a certain totem poll and symbols drawn on the ground surrounding the pedestal. For more information on rituals, do /vdcraft help ritual or go to our wiki page here: <TODO: Create wiki page and provide link>."
-						);
+					sendMessageToChat(sender, TextFormatting.LIGHT_PURPLE + VoodooConfig.commandResultDetails[0]);
+				}else if(args[1].equals("rituals")){
+					sendMessageToChat(sender, TextFormatting.BLUE + VoodooConfig.commandResultDetails[1]);
+				}else if(args[1].equals("items")){
+					sendMessageToChat(sender, TextFormatting.GREEN+VoodooConfig.commandResultDetails[2]);
+					if(args[2].equals("chalk")){
+						commandFindItem(sender, "chalk");
+					}
+					else if(args[2].equals("dolls")){
+						commandFindItem(sender, "dolls");
+					}
+					else if(args[2].equals("shard")){
+						commandFindItem(sender, "shard");
+					}
 				}
 			}
 			
 		}
 	}
+	
+	private void commandFindItem(ICommandSender sender, String itemName){
+		switch(itemName){
+		case "chalk":
+			sendMessageToChat(sender, VoodooConfig.commandResultDetails[3]);
+			break;
+		case "dolls":
+			sendMessageToChat(sender, VoodooConfig.commandResultDetails[4]);
+			break;
+		case "shard":
+			sendMessageToChat(sender, VoodooConfig.commandResultDetails[5]);
+			break;
+		}
+	}
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
-		return null;
+		if(args.length == 1){
+			return getListOfStringsMatchingLastWord(args, new String[]{"help"});
+		}else{
+			if(args.length == 2){
+				return getListOfStringsMatchingLastWord(args, new String[]{"hexes", "rituals", "items"});
+			}if(args.length == 3){
+				return getListOfStringsMatchingLastWord(args, new String[]{"chalk", "dolls", "shard"});
+			}
+		}
+		return Collections.<String>emptyList();
 	}
 	
-	public void sendMessageToChat(ICommandSender sender, String message){
+	public boolean sendMessageToChat(ICommandSender sender, String message){
 		sender.sendMessage(new TextComponentString(message));
+		return true;
 	}
 }

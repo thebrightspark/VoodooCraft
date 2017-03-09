@@ -28,6 +28,7 @@ public class NBTHelper
     	stackNBT.setTag(KEY_OWNER, NBTUtil.createUUIDTag(entity.getUniqueID())); //TODO: getPersistentID() doesn't work for non-player entities
     	stackNBT.setString(KEY_OWNER_NAME, entity.getName());
     	stack.setTagCompound(stackNBT);
+    	System.out.println("NBT HAS BEEN SET**************");
 	}
 	
     @Nullable

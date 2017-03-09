@@ -36,7 +36,6 @@ public class ItemShard extends VCItem {
                     }
             }
         });
-        this.setMaxDamage(0);
     }
 
     @Override
@@ -56,18 +55,21 @@ public class ItemShard extends VCItem {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target,
                                             EnumHand hand) {
         World world = player.getEntityWorld();
+        ItemStack stackIn = player.getHeldItemMainhand();
 
         if (!world.isRemote) {
             if (checkNBTInfo(stack)) {
                 if (target != null) {
-                    NBTHelper.setOwnerTag(stack, target);
                     target.attackEntityFrom(DamageSource.causePlayerDamage(player), 0.5F);
+                    NBTHelper.setOwnerTag(stackIn, target);
+                    target.setCustomNameTag(NBTHelper.getOwnerName(stackIn));
                     return true;
                 }
             }
         }
         return false;
 }
+
 
     @Override
     public boolean hasEffect(ItemStack stack) {

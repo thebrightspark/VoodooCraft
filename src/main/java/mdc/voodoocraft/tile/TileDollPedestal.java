@@ -1,6 +1,8 @@
 package mdc.voodoocraft.tile;
 
+import mdc.voodoocraft.handlers.DollTracker;
 import mdc.voodoocraft.items.ItemDoll;
+import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -30,22 +32,20 @@ public class TileDollPedestal extends TileEntity implements ITickable{
 		}
 			
 	}
-	/*
+	
 	@Override
 	public void onLoad()
     {
         TileDollPedestal tile = (TileDollPedestal)this.getWorld().getTileEntity(this.getPos());
-        IItemHandler tileinv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        if(tileinv.getStackInSlot(0)!=null)
-        {
-        	//TODO Add tile entity to list
-        }
+        
+        DollTracker.updateTileEntry(tile);
     }
-	*/
+	
     private ItemStackHandler itemStackHandler = 
     		new ItemStackHandler(1){
         @Override
         protected void onContentsChanged(int slot) {
+        	DollTracker.updateTileEntry(TileDollPedestal.this);
         	TileDollPedestal.this.markDirty();
         }
     };

@@ -11,6 +11,7 @@ import mdc.voodoocraft.util.HexHelper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -76,5 +77,9 @@ public class ItemDoll extends VCItem
         }
     	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + I18n.format("press.for.info.name", "SHIFT")); //TODO: configurable key?
     }
-    
+
+    @Override
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
+        return super.itemInteractionForEntity(stack, playerIn, target, hand);
+    }
 }

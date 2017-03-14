@@ -3,6 +3,7 @@ package mdc.voodoocraft.items;
 import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
@@ -60,9 +61,12 @@ public class ItemShard extends VCItem {
         if (!world.isRemote) {
             if (checkNBTInfo(stack)) {
                 if (target != null) {
-                    target.attackEntityFrom(DamageSource.causePlayerDamage(player), 0.5F);
-                    NBTHelper.setOwnerTag(stackIn, target);
-                    target.setCustomNameTag(NBTHelper.getOwnerName(stackIn));
+                    if(target instanceof EntityLiving){
+                        EntityLiving livingTarget = (EntityLiving) target;
+                        target.attackEntityFrom(DamageSource.causePlayerDamage(player), 0.5F);
+                        NBTHelper.setOwnerTag(stackIn, target);
+                        livingTarget.enablePersistence();
+                    }
                     return true;
                 }
             }

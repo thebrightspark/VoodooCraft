@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import mdc.voodoocraft.handlers.RegHandler;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -82,7 +83,7 @@ public class HexEntry extends IForgeRegistryEntry.Impl<HexEntry>
 	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength) {
 		return stackIn;
 	}
-	
+
 	//TODO: how would we go about passive uses?
 	//I think we could make each HexEntry handle that by itself using events, I guess
     

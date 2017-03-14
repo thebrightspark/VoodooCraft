@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.items.ItemDoll;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;

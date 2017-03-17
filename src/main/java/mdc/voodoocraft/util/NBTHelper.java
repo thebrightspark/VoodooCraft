@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -16,6 +17,7 @@ public class NBTHelper
 {
 	public static final String KEY_OWNER = "owner";
 	public static final String KEY_OWNER_NAME = "owner_name";
+	public static final String KEY_IS_PLAYER = "isPlayer";
 	
     /**
      * saves the {@link UUID} and {@code NAME} of an entity to an ItemStack.
@@ -25,8 +27,9 @@ public class NBTHelper
     public static void setOwnerTag(ItemStack stack, EntityLivingBase entity)
 	{
     	NBTTagCompound stackNBT = getTagCompound(stack);
-    	stackNBT.setTag(KEY_OWNER, NBTUtil.createUUIDTag(entity.getUniqueID())); //TODO: getPersistentID() doesn't work for non-player entities
+    	stackNBT.setTag(KEY_OWNER, NBTUtil.createUUIDTag(entity.getUniqueID()));
     	stackNBT.setString(KEY_OWNER_NAME, entity.getName());
+    	if(entity instanceof EntityPlayer) stackNBT.setBoolean(KEY_IS_PLAYER, true);
     	stack.setTagCompound(stackNBT);
     	System.out.println("NBT HAS BEEN SET**************");
 	}

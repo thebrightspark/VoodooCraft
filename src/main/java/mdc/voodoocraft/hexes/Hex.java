@@ -142,8 +142,4 @@ public class Hex {
 	public void setDisplayName(String name) {
 		this.hexNBT.setString(KEY_DISPLAY_NAME, name);
 	}
-
-	public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		return this.entry.activeUse(stack, world, player, hand, this.getStrength());
-	}
 }

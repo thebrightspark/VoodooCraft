@@ -1,7 +1,10 @@
 package mdc.voodoocraft.rituals;
 
+import mdc.voodoocraft.blocks.BlockGlyph;
 import mdc.voodoocraft.init.VCBlocks;
+import mdc.voodoocraft.util.EnumGlyphType;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -45,12 +48,11 @@ public class MagmaBlockToCream {
 	 */
 	public static boolean hasGlyphs(World world, BlockPos pos)
 	{
-		Block basic = VCBlocks.GLYPH; //TODO Change glyphs to fire type (use blockstate property BlockGlyph.TYPE!)
 		Block magma = Blocks.MAGMA;
-		return (world.getBlockState(pos.east()).getBlock()==basic&&
-				world.getBlockState(pos.west()).getBlock()==basic&&
-				world.getBlockState(pos.north()).getBlock()==basic&&
-				world.getBlockState(pos.south()).getBlock()==basic&&
+		return (world.getBlockState(pos.east()).getValue(BlockGlyph.TYPE)==EnumGlyphType.FIRE&&
+				world.getBlockState(pos.west()).getValue(BlockGlyph.TYPE)==EnumGlyphType.FIRE&&
+				world.getBlockState(pos.north()).getValue(BlockGlyph.TYPE)==EnumGlyphType.FIRE&&
+				world.getBlockState(pos.south()).getValue(BlockGlyph.TYPE)==EnumGlyphType.FIRE&&
 				world.getBlockState(pos.south().east()).getBlock()==magma&&
 				world.getBlockState(pos.south().west()).getBlock()==magma&&
 				world.getBlockState(pos.north().east()).getBlock()==magma&&

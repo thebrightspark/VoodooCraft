@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.items.ItemDoll;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -49,13 +50,32 @@ public class HexHelper {
 		stackIn.setTagCompound(stackNBT); //update the actual compound
 		return stackIn;
 	}
-	
+	/**
+	 * Should be used for hexes that are fired on right clicking nothing
+	 * @return
+	 */
 	public static ItemStack activate(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
 		List<Hex> hexes = getHexes(stack);
 		if(!hexes.isEmpty()) {
 			int multiplier = 1;
 			for(Hex h : hexes) {
-				stack = h.activeUse(stack, world, player, hand);
+				stack = h.getEntry().activeUse(stack, world, player, hand, h.getStrength());
+				multiplier += h.getCost();
+	        }
+			stack.damageItem(multiplier * hexes.size(), player);
+	    }
+		return stack;
+	}
+	/**
+	 * Should be used for hexes that are fired on right clicking entities
+	 * @return
+	 */
+	public static ItemStack activate(ItemStack stack, World world, EntityPlayer player, EnumHand hand, EntityLivingBase target) {
+		List<Hex> hexes = getHexes(stack);
+		if(!hexes.isEmpty()) {
+			int multiplier = 1;
+			for(Hex h : hexes) {
+				stack = h.getEntry().entityActivate(stack, world, player, hand, h.getStrength(), target);
 				multiplier += h.getCost();
 	        }
 			stack.damageItem(multiplier * hexes.size(), player);

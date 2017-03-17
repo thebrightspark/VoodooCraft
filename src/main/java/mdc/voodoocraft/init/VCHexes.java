@@ -1,7 +1,9 @@
 package mdc.voodoocraft.init;
 
 import mdc.voodoocraft.hexes.HexEntry;
+import mdc.voodoocraft.hexes.HexInsomnia;
 import mdc.voodoocraft.hexes.HexRegeneration;
+import mdc.voodoocraft.hexes.HexZombify;
 
 public class VCHexes
 {
@@ -18,14 +20,14 @@ public class VCHexes
 	public static final HexEntry WATER_BREATHING = new HexEntry("water_breathing");
 	public static final HexEntry PROTECTION = new HexEntry("protection");
 	public static final HexEntry NAP = new HexEntry("nap");
-	public static final HexEntry INSOMNIA = new HexEntry("insomnia");
+	public static final HexEntry INSOMNIA = new HexInsomnia();
 	public static final HexEntry SAFETY = new HexEntry("safety");
 	public static final HexEntry DANGER = new HexEntry("danger"); //what would this do??
 	public static final HexEntry FREEZE = new HexEntry("freeze");
 	public static final HexEntry FIRE_PROTECTION = new HexEntry("fire_protection");
 	public static final HexEntry WATER_WALK = new HexEntry("water_walk");
 	public static final HexEntry WITHER = new HexEntry("wither");
-	public static final HexEntry ZOMBIE = new HexEntry("zombie");
+	public static final HexEntry ZOMBIE = new HexZombify();
 	public static final HexEntry TIME_SPRINT = new HexEntry("time_sprint"); //HOW would we do this?
 	public static final HexEntry LIFE_DRAIN = new HexEntry("life_drain"); //maybe make this slightly more powerful than regeneration, but have it only work for hostile mobs or players 
 	public static final HexEntry FROM_ASHES = new HexEntry("from_ashes"); //what is this??

@@ -83,13 +83,7 @@ public class HexEntry extends IForgeRegistryEntry.Impl<HexEntry>
 	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength) {
 		return stackIn;
 	}
-	/**
-	 * Called on right clicking an entity.
-	 * @return
-	 */
-	public ItemStack entityActivate(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength, EntityLivingBase target){
-		return stackIn;
-	}
+
 	//TODO: how would we go about passive uses?
 	//I think we could make each HexEntry handle that by itself using events, I guess
     

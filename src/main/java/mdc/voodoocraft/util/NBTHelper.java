@@ -31,6 +31,7 @@ public class NBTHelper
     	stackNBT.setString(KEY_OWNER_NAME, entity.getName());
     	if(entity instanceof EntityPlayer) stackNBT.setBoolean(KEY_IS_PLAYER, true);
     	stack.setTagCompound(stackNBT);
+    	System.out.println("NBT HAS BEEN SET**************");
 	}
 	
     @Nullable

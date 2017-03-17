@@ -3,6 +3,7 @@ package mdc.voodoocraft.items;
 import mdc.voodoocraft.util.NBTHelper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
@@ -28,18 +29,14 @@ public class ItemShard extends VCItem {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                    if (entityIn == null)
+                    if(checkNBTInfo(stack))
                     {
-                        return 1.0F;
-                    }else if(checkNBTInfo(stack)){
                         return 0.0F;
-                    }
-                    else{
+                    }else{
                         return 1.0F;
                     }
             }
         });
-        this.setMaxDamage(0);
     }
 
     @Override
@@ -59,17 +56,24 @@ public class ItemShard extends VCItem {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target,
                                             EnumHand hand) {
         World world = player.getEntityWorld();
+        ItemStack stackIn = player.getHeldItemMainhand();
+
         if (!world.isRemote) {
             if (checkNBTInfo(stack)) {
                 if (target != null) {
-                    NBTHelper.setOwnerTag(stack, target);
-                    target.attackEntityFrom(DamageSource.causePlayerDamage(player), 0.5F);
+                    if(target instanceof EntityLiving){
+                        EntityLiving livingTarget = (EntityLiving) target;
+                        target.attackEntityFrom(DamageSource.causePlayerDamage(player), 0.5F);
+                        NBTHelper.setOwnerTag(stackIn, target);
+                        livingTarget.enablePersistence();
+                    }
                     return true;
                 }
             }
         }
         return false;
-    }
+}
+
 
     @Override
     public boolean hasEffect(ItemStack stack) {

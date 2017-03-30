@@ -77,10 +77,10 @@ public class HexEntry extends IForgeRegistryEntry.Impl<HexEntry>
 
     /**
      * called by the {@link Hex} to execute the active use of this hex
-     * @param strength 
+     * @param target null unless an entity has been clicked on
      * @return the ItemStack to update the player's active ItemStack
      */
-	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength) {
+	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength, @Nullable EntityLivingBase target) {
 		return stackIn;
 	}
 

@@ -3,7 +3,6 @@ package mdc.voodoocraft.proxy;
 import mdc.voodoocraft.commands.*;
 import mdc.voodoocraft.config.*;
 import mdc.voodoocraft.init.*;
-import net.minecraft.command.*;
 import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy
@@ -19,6 +18,7 @@ public class CommonProxy
 
     public void init(FMLInitializationEvent e)
     {
+        VCAchievements.registerAchievements();
         VCRecipes.init();
     }
 

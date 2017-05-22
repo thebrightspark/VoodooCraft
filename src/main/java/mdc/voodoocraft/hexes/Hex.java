@@ -3,7 +3,7 @@ package mdc.voodoocraft.hexes;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mdc.voodoocraft.handlers.VCAchievements;
+import mdc.voodoocraft.init.VCAchievements;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.handlers.RegHandler;
+import mdc.voodoocraft.handlers.VCAchievements;
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.hexes.HexEntry;
 import mdc.voodoocraft.util.HexHelper;
@@ -33,6 +34,15 @@ public class ItemDoll extends VCItem
         setMaxStackSize(1);
         setMaxDamage(100);
         setHasSubtypes(true);
+    }
+
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+        if(!worldIn.isRemote){
+            if(!playerIn.hasAchievement(VCAchievements.achievementHexFirstTime)){
+                playerIn.addStat(VCAchievements.achievementHexFirstTime);
+            }
+        }
     }
 
     @Override

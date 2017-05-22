@@ -1,14 +1,11 @@
 package mdc.voodoocraft.init;
 
-import mdc.voodoocraft.hexes.HexEntry;
-import mdc.voodoocraft.hexes.HexInsomnia;
-import mdc.voodoocraft.hexes.HexRegeneration;
-import mdc.voodoocraft.hexes.HexZombify;
+import mdc.voodoocraft.hexes.*;
 
 public class VCHexes
 {
 	public static final HexEntry REGENERATION = new HexRegeneration();
-	public static final HexEntry FEATHER = new HexEntry("feather");
+	public static final HexEntry FEATHER = new HexFeatherFalling();
 	public static final HexEntry HEALTH_BIND = new HexEntry("health_bind");
 	public static final HexEntry GREEN_FINGERS = new HexEntry("green_fingers");
 	public static final HexEntry DEATH = new HexEntry("death");
@@ -17,7 +14,7 @@ public class VCHexes
 	public static final HexEntry TELEPORT = new HexEntry("teleport");
 	public static final HexEntry SPIRIT_WALK = new HexEntry("spirit_walk");
 	public static final HexEntry FERTILITY = new HexEntry("fertiliy");
-	public static final HexEntry WATER_BREATHING = new HexEntry("water_breathing");
+	public static final HexEntry WATER_BREATHING = new HexWaterBreathing();
 	public static final HexEntry PROTECTION = new HexEntry("protection");
 	public static final HexEntry NAP = new HexEntry("nap");
 	public static final HexEntry INSOMNIA = new HexInsomnia();
@@ -25,7 +22,7 @@ public class VCHexes
 	public static final HexEntry DANGER = new HexEntry("danger"); //what would this do??
 	public static final HexEntry FREEZE = new HexEntry("freeze");
 	public static final HexEntry FIRE_PROTECTION = new HexEntry("fire_protection");
-	public static final HexEntry WATER_WALK = new HexEntry("water_walk");
+	public static final HexEntry WATER_WALK = new HexWaterWalking();
 	public static final HexEntry WITHER = new HexEntry("wither");
 	public static final HexEntry ZOMBIE = new HexZombify();
 	public static final HexEntry TIME_SPRINT = new HexEntry("time_sprint"); //HOW would we do this?

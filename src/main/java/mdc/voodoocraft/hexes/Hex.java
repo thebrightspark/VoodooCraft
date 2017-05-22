@@ -3,6 +3,7 @@ package mdc.voodoocraft.hexes;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import mdc.voodoocraft.handlers.VCAchievements;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -145,6 +146,7 @@ public class Hex {
 
 	public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand, @Nullable EntityLivingBase target)
 	{
+		if(!player.hasAchievement(VCAchievements.achievementHexFirstUse)) player.addStat(VCAchievements.achievementHexFirstUse);
 		return this.entry.activeUse(stack, world, player, hand, this.getStrength(), target);
 	}
 }

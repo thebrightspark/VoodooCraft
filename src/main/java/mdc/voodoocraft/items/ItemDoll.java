@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.handlers.RegHandler;
-import mdc.voodoocraft.handlers.VCAchievements;
+import mdc.voodoocraft.init.VCAchievements;
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.hexes.HexEntry;
 import mdc.voodoocraft.util.HexHelper;

@@ -39,9 +39,7 @@ public class ItemDoll extends VCItem
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
         if(!worldIn.isRemote){
-            if(!playerIn.hasAchievement(VCAchievements.achievementHexFirstTime)){
-                playerIn.addStat(VCAchievements.achievementHexFirstTime);
-            }
+            playerIn.addStat(VCAchievements.achievementHexFirstTime);
         }
     }
 

@@ -9,12 +9,13 @@ public class VCHexes
 	public static final HexEntry HEALTH_BIND = new HexEntry("health_bind");
 	public static final HexEntry GREEN_FINGERS = new HexEntry("green_fingers");
 	public static final HexEntry DEATH = new HexEntry("death");
-	public static final HexEntry FIRE_AURA = new HexEntry("fire_aura");
+	public static final HexEntry FIRE_AURA = new HexEntry("fireaura");
+	public static final HexEntry SPAWN_POINT = new HexSpawnPoint();
 	public static final HexEntry SUFFOCATION = new HexEntry("suffocation");
 	public static final HexEntry TELEPORT = new HexEntry("teleport");
 	public static final HexEntry SPIRIT_WALK = new HexEntry("spirit_walk");
 	public static final HexEntry FERTILITY = new HexEntry("fertiliy");
-	public static final HexEntry WATER_BREATHING = new HexWaterBreathing();
+	public static final HexEntry WATER_BREATHING = new HexEntry("waterbreathing");
 	public static final HexEntry PROTECTION = new HexEntry("protection");
 	public static final HexEntry NAP = new HexEntry("nap");
 	public static final HexEntry INSOMNIA = new HexInsomnia();

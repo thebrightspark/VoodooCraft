@@ -34,7 +34,7 @@ public class HexWaterWalking extends HexEntry{
         Material mat = world.getBlockState(position).getMaterial();
         if(mat == Material.WATER){
             float newY = position.getY() + 0.5F;
-            event.player.setPosition(position.getX(), position.getY(), position.getZ());
+            event.player.setPosition(position.getX(), newY, position.getZ());
         }
     }
 }

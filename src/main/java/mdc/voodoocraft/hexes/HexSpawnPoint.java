@@ -2,23 +2,25 @@ package mdc.voodoocraft.hexes;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class HexWaterBreathing extends HexEntry{
-    public HexWaterBreathing() {
-        super("waterbreathing");
+public class HexSpawnPoint extends HexEntry{
+    public HexSpawnPoint(){
+        super("spawnpoint");
     }
 
     @Override
     public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength, @Nullable EntityLivingBase target) {
         if(!world.isRemote){
-            player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 3000));
+            BlockPos pos = player.getPosition();
+            player.setSpawnPoint(new BlockPos(pos.getX(), pos.getY(), pos.getZ()), true);
+            player.sendStatusMessage(new TextComponentString("Spawn point set to {x: " + pos.getX() + ", y: " + pos.getY() + ", z: " + pos.getZ() + "} for " + player.getName()));
         }
 
         return super.activeUse(stackIn, world, player, hand, strength, target);

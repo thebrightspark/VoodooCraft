@@ -3,8 +3,6 @@ package mdc.voodoocraft.handlers;
 import mdc.voodoocraft.blocks.*;
 import mdc.voodoocraft.init.*;
 import mdc.voodoocraft.util.*;
-import net.minecraft.block.material.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.text.*;
@@ -12,10 +10,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.event.entity.*;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.Mod.*;
-import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.*;
-import net.minecraftforge.fml.common.gameevent.*;
 
 @Mod.EventBusSubscriber
 public class VCEventHandler {

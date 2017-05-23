@@ -2,6 +2,7 @@ package mdc.voodoocraft.proxy;
 
 import mdc.voodoocraft.commands.*;
 import mdc.voodoocraft.config.*;
+import mdc.voodoocraft.init.VCAchievements;
 import mdc.voodoocraft.init.*;
 import net.minecraftforge.fml.common.event.*;
 

@@ -4,8 +4,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import mdc.voodoocraft.init.VCAchievements;
+import mdc.voodoocraft.items.ItemDoll;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -119,6 +121,18 @@ public class Hex {
 
         this.hexNBT.setInteger(KEY_COST, cost);
     }
+
+    public static boolean isHexEqualTo(ItemStack stack1, ItemStack stack2){
+    	if((stack1.getItem() instanceof ItemDoll) && (stack2.getItem() instanceof ItemDoll)){
+    		if(stack1.hasTagCompound() && stack2.hasTagCompound()){
+				return stack1.getTagCompound().getCompoundTag(KEY_NAME) == stack2.getTagCompound().getCompoundTag(KEY_NAME);
+			}else{
+    			return false;
+			}
+		}else{
+    		return false;
+		}
+	}
     
     /**
 	 * @return the formatted name of this Hex's {@link HexEntry} for simplification
@@ -146,7 +160,7 @@ public class Hex {
 
 	public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand, @Nullable EntityLivingBase target)
 	{
-		if(!player.hasAchievement(VCAchievements.achievementHexFirstUse)) player.addStat(VCAchievements.achievementHexFirstUse);
+		player.addStat(VCAchievements.achievementHexFirstUse);
 		return this.entry.activeUse(stack, world, player, hand, this.getStrength(), target);
 	}
 }

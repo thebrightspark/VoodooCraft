@@ -8,6 +8,7 @@ desc.hex.name=Current Hex applied:
 item.doll.name=Voodoo Doll
 
 #Blocks
+tile.totem.name=Totem
 
 #Hexes
 hex.regeneration.name=Regeneration

@@ -10,7 +10,7 @@ public class BlockShrine extends VCModelBlock{
 	private static final AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	
 	public BlockShrine() {
-		super("shrine", true);
+		super("shrine");
 	}
 
 	@Override

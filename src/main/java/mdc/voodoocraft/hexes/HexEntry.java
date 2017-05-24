@@ -4,65 +4,49 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mdc.voodoocraft.handlers.RegHandler;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class HexEntry extends IForgeRegistryEntry.Impl<HexEntry>
+public class HexEntry
 {
 	private String unlocalizedName;
     
-    public HexEntry() {
-    	//nothing here atm.
-	}
-    
-    public HexEntry(String name) {
-    	this();
-    	this.setRegistryName(name);
-    	this.setUnlocalizedName(name);
-    }
-    
-    public HexEntry setUnlocalizedName(String name) {
-    	this.unlocalizedName = name;
-    	return this;
+    public HexEntry(String name)
+    {
+    	unlocalizedName = name;
     }
 
     @Nonnull
     @SideOnly(Side.CLIENT)
     public String getDescription()
     {
-        return I18n.format("desc." + this.getUnlocalizedName());
+        return I18n.format("desc." + getUnlocalizedName());
     }
     
     @Nonnull
-    public String getUnlocalizedName() {
-    	return "hex." + this.unlocalizedName + ".name";
+    public String getUnlocalizedName()
+    {
+    	return "hex." + unlocalizedName + ".name";
+    }
+
+    public String getRawName()
+    {
+        return unlocalizedName;
     }
     
     @SideOnly(Side.CLIENT)
-    public String getFormattedName() {
-    	return I18n.format(this.getUnlocalizedName());
+    public String getLocalisedName()
+    {
+    	return I18n.format(getUnlocalizedName());
     }
-    
-    @Nullable
-    public static HexEntry byName(String name) {
-    	return byName(new ResourceLocation(name));
-    }
-
-    @Nullable
-	public static HexEntry byName(ResourceLocation location) {
-		return RegHandler.getHexRegistry().getObject(location);
-	}
 
     /**
      * @param strength the strength of the {@link Hex}

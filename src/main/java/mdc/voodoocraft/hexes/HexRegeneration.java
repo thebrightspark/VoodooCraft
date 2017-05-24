@@ -12,15 +12,15 @@ import javax.annotation.Nullable;
 
 public class HexRegeneration extends HexEntry {
 
-	public HexRegeneration() {
+	public HexRegeneration()
+	{
 		super("regeneration");
 	}
 	
 	@Override
 	public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength, @Nullable EntityLivingBase target) {
-		if(world.isRemote) {
+		if(!world.isRemote)
 			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 3)); //about 1.5 hearts per use
-		}
 		return super.activeUse(stackIn, world, player, hand, strength, target);
 	}
 }

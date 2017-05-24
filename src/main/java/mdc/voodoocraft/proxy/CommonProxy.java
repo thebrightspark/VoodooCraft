@@ -12,6 +12,7 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent e)
     {
     	VoodooConfig.init(e.getSuggestedConfigurationFile());
+    	VCHexes.init();
         VCEntities.init();
         VCSoundHandler.init();
         VCBlocks.registerTileEntities();

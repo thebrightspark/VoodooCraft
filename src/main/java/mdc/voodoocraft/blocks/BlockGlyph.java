@@ -33,9 +33,10 @@ public class BlockGlyph extends VCModelBlock{
 	private static final AxisAlignedBB hitbox = new AxisAlignedBB(0.0, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	public static final PropertyEnum<EnumGlyphType> TYPE = PropertyEnum.create("type", EnumGlyphType.class); 
 	
-	public BlockGlyph() {
-		super("glyph", Material.CIRCUITS, false);
-		this.setHardness(0);
+	public BlockGlyph()
+	{
+		super("glyph", Material.CIRCUITS);
+		setHardness(0);
 	}
 	
 	@Override

@@ -1,17 +1,13 @@
 package mdc.voodoocraft.hexes;
 
-
-import mdc.voodoocraft.VoodooCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -25,7 +21,7 @@ public class HexZombify extends HexEntry {
 
     @Override
     public ItemStack activeUse(ItemStack stackIn, World world, EntityPlayer player, EnumHand hand, int strength, @Nullable EntityLivingBase target) {
-        if(world.isRemote) {
+        if(!world.isRemote) {
             //Gets the result of the raytrace intersection that is 10 blocks away
             RayTraceResult result = Minecraft.getMinecraft().objectMouseOver;
             //Gets the entity from the raytrace result

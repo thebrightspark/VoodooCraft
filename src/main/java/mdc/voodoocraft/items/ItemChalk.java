@@ -50,7 +50,7 @@ public class ItemChalk extends VCItem {
 			EnumGlyphType newtype = EnumGlyphType.byIndex(nbt.getInteger(KEY_GLYPH)).next();
 			nbt.setInteger(KEY_GLYPH, newtype.ordinal());
 			itemStackIn.setTagCompound(nbt);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
 		}
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
 	}

@@ -22,39 +22,34 @@ import java.util.List;
 public class ItemShard extends VCItem {
     public ItemShard() {
         super("shard");
-        this.setMaxStackSize(1);
-        this.addPropertyOverride(new ResourceLocation("shardfull"), new IItemPropertyGetter()
+        setMaxStackSize(1);
+        addPropertyOverride(new ResourceLocation("shardfull"), new IItemPropertyGetter()
         {
             @Override
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                    if(checkNBTInfo(stack))
-                    {
-                        return 0.0F;
-                    }else{
-                        return 1.0F;
-                    }
+                return checkNBTInfo(stack) ? 0f : 1f;
             }
         });
     }
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if(checkNBTInfo(stack)) {
+        if(checkNBTInfo(stack))
                 tooltip.add(I18n.format("shard.type.empty.name"));
-        }else {
+        else
+        {
             tooltip.add(I18n.format("shard.type.name", NBTHelper.getOwnerName(stack)));
-            if (GuiScreen.isShiftKeyDown()) {
+            if (GuiScreen.isShiftKeyDown())
                 tooltip.add("UUID: " + NBTHelper.getOwnerUUID(stack));
-            } else
+            else
                 tooltip.add(TextFormatting.AQUA + I18n.format("press.for.info.name", "SHIFT")); //TODO: configurable key?
         }
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target,
-                                            EnumHand hand) {
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
         World world = player.getEntityWorld();
         ItemStack stackIn = player.getHeldItemMainhand();
 
@@ -72,22 +67,16 @@ public class ItemShard extends VCItem {
             }
         }
         return false;
-}
-
-
-    @Override
-    public boolean hasEffect(ItemStack stack) {
-        if(!checkNBTInfo(stack)){
-            return true;
-        }
-        return super.hasEffect(stack);
     }
 
-    private boolean checkNBTInfo(ItemStack stack){
-        if(NBTHelper.getOwnerName(stack).contains("INVALID"))
-        {
-            return true;
-        }else
-            return false;
+    @Override
+    public boolean hasEffect(ItemStack stack)
+    {
+        return !checkNBTInfo(stack) || super.hasEffect(stack);
+    }
+
+    private boolean checkNBTInfo(ItemStack stack)
+    {
+        return NBTHelper.getOwnerName(stack).contains("INVALID");
     }
 }

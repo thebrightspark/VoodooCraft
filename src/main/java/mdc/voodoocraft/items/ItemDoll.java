@@ -2,12 +2,10 @@ package mdc.voodoocraft.items;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
-import mdc.voodoocraft.handlers.RegHandler;
 import mdc.voodoocraft.init.VCAchievements;
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.hexes.HexEntry;
+import mdc.voodoocraft.init.VCHexes;
 import mdc.voodoocraft.util.HexHelper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -37,10 +35,10 @@ public class ItemDoll extends VCItem
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-        if(!worldIn.isRemote){
+    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    {
+        if(!worldIn.isRemote)
             playerIn.addStat(VCAchievements.achievementHexFirstTime);
-        }
     }
 
     @Override
@@ -51,8 +49,9 @@ public class ItemDoll extends VCItem
         subItems.add(new ItemStack(this));
 
         //Add a doll for every Hex
-        for(HexEntry entry : RegHandler.getHexRegistry().getValues()) {
-            ItemStack dollWithHex = HexHelper.setHexes(new ItemStack(itemIn), Lists.newArrayList(new Hex(entry)));
+        for(HexEntry entry : VCHexes.HEXES.values())
+        {
+            ItemStack dollWithHex = HexHelper.setHexes(new ItemStack(itemIn), new Hex(entry));
             subItems.add(dollWithHex);
         }
     }
@@ -62,7 +61,7 @@ public class ItemDoll extends VCItem
     {
         itemStackIn = HexHelper.activate(itemStackIn, worldIn, playerIn, hand);
         playerIn.getCooldownTracker().setCooldown(this, 30); //1.5 seconds cooldown after use
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class ItemDoll extends VCItem
     	tooltip.add(I18n.format("desc.hex.name"));
     	if(!hexes.isEmpty()) {
     		for(Hex h : hexes) {
-    			tooltip.add(h.getFormattedName());
+    			tooltip.add(h.getLocalisedName());
     			if(h.getDescription() != null && GuiScreen.isShiftKeyDown()) {
     				tooltip.add(h.getDescription());
     			}

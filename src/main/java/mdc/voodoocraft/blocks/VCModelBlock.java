@@ -13,15 +13,11 @@ public abstract class VCModelBlock extends VCBlock {
 
 	public VCModelBlock(String name, Material mat)
 	{
-		this(name, mat, true);
+		super(name, mat);
 	}
-	public VCModelBlock(String name, boolean hasItemBlock)
+	public VCModelBlock(String name)
 	{
-		super(name, Material.ROCK, true);
-	}
-	
-	public VCModelBlock(String name, Material mat, boolean createItemBlock) {
-		super(name, mat, createItemBlock);
+		super(name, Material.ROCK);
 	}
 	/**
 	 * @return the AABB of the block, <b>not</b> the final AABB in the world.

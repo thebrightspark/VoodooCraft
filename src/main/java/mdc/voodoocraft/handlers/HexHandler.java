@@ -1,17 +1,24 @@
 package mdc.voodoocraft.handlers;
 
 import mdc.voodoocraft.util.HexHelper;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -104,6 +111,20 @@ public class HexHandler
                 //Damage the doll
                 stack.damageItem(1, entity);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void fluidWalking(TickEvent.PlayerTickEvent event)
+    {
+        if(event.side == Side.CLIENT) return;
+        EntityPlayerMP player = (EntityPlayerMP)event.player;
+        World world = player.getEntityWorld();
+        BlockPos position = player.getPosition();
+        Material mat = world.getBlockState(position).getMaterial();
+        if(mat == Material.WATER){
+            float newY = position.getY() + 0.5F;
+            event.player.setPosition(position.getX(), newY, position.getZ());
         }
     }
 }

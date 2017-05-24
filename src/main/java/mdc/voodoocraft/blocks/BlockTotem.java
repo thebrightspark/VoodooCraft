@@ -19,7 +19,7 @@ public class BlockTotem extends VCBlockContainer
 {
     public BlockTotem()
     {
-        super("totem", Material.ROCK);
+        super("totem");
     }
 
     @Override

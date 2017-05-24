@@ -40,7 +40,7 @@ public class HexHelper {
 		return hexes;
 	}
 	
-	public static ItemStack setHexes(ItemStack stackIn, List<Hex> hexes) {
+	public static ItemStack setHexes(ItemStack stackIn, Hex... hexes) {
 		NBTTagCompound stackNBT = new NBTTagCompound();
 		if(stackIn.hasTagCompound()) stackNBT = stackIn.getTagCompound();
 		NBTTagList hexList = new NBTTagList();

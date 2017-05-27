@@ -8,19 +8,20 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber
-public class ModelHandler
+@Mod.EventBusSubscriber(Side.CLIENT)
+public class ClientHandler
 {
     @SubscribeEvent
     public static void regModels(ModelRegistryEvent event)
     {
         //Register item models
-        VCItems.ITEMS.forEach(ModelHandler::regModel);
+        VCItems.ITEMS.forEach(ClientHandler::regModel);
         //Above is the same as:
         //for(Item item : VCItems.ITEMS)
         //    regModel(item);
-        VCBlocks.ITEM_BLOCKS.forEach(ModelHandler::regModel);
+        VCBlocks.ITEM_BLOCKS.forEach(ClientHandler::regModel);
         //Above is the same as:
         //for(ItemBlock itemBlock : VCBlocks.ITEM_BLOCKS)
         //    regModel(itemBlock);

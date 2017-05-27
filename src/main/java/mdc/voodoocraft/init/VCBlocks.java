@@ -15,6 +15,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,7 @@ public class VCBlocks
         regTE(TileTotem.class, TOTEM);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerTileEntityRenders()
     {
         //Register TESRs
@@ -66,6 +69,7 @@ public class VCBlocks
         GameRegistry.registerTileEntity(teClass, block.getRegistryName().getResourcePath());
     }
 
+    @SideOnly(Side.CLIENT)
     private static <T extends TileEntity> void regTESR(Class<? extends T> teClass, TileEntitySpecialRenderer<? super T> tesr)
     {
         ClientRegistry.bindTileEntitySpecialRenderer(teClass, tesr);

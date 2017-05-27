@@ -16,7 +16,7 @@ public class VCHexes
 		addHex(new HexEntry("feather"));
 		addHex(new HexEntry("health_bind"));
 		addHex(new HexEntry("green_fingers"));
-		addHex(new HexEntry("death"));
+		addHex(new HexDeath());
 		addHex(new HexEntry("fireaura"));
 		addHex(new HexSpawnPoint());
 		addHex(new HexEntry("suffocation"));

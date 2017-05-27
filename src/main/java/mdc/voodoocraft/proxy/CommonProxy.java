@@ -1,15 +1,10 @@
 package mdc.voodoocraft.proxy;
 
-import mdc.voodoocraft.config.VoodooConfig;
-import mdc.voodoocraft.init.VCBlocks;
-import mdc.voodoocraft.init.VCEntities;
-import mdc.voodoocraft.init.VCRecipes;
-import mdc.voodoocraft.init.VCSoundHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import mdc.voodoocraft.commands.*;
+import mdc.voodoocraft.config.*;
+import mdc.voodoocraft.init.VCAchievements;
+import mdc.voodoocraft.init.*;
+import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy
 {
@@ -17,13 +12,15 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent e)
     {
     	VoodooConfig.init(e.getSuggestedConfigurationFile());
+    	VCHexes.init();
         VCEntities.init();
         VCSoundHandler.init();
-        VCBlocks.registerTileEntities();;
+        VCBlocks.registerTileEntities();
     }
 
     public void init(FMLInitializationEvent e)
     {
+        VCAchievements.registerAchievements();
         VCRecipes.init();
     }
 
@@ -32,7 +29,7 @@ public class CommonProxy
     }
     
     public void serverStarting(FMLServerStartingEvent e) {
-    	//register commands
+    	e.registerServerCommand(new CommandVCHelp());
     }
     
     public void serverStopping(FMLServerStoppingEvent e) {

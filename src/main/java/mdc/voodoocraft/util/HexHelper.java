@@ -3,11 +3,13 @@ package mdc.voodoocraft.util;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.items.ItemDoll;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,7 +40,7 @@ public class HexHelper {
 		return hexes;
 	}
 	
-	public static ItemStack setHexes(ItemStack stackIn, List<Hex> hexes) {
+	public static ItemStack setHexes(ItemStack stackIn, Hex... hexes) {
 		NBTTagCompound stackNBT = new NBTTagCompound();
 		if(stackIn.hasTagCompound()) stackNBT = stackIn.getTagCompound();
 		NBTTagList hexList = new NBTTagList();
@@ -49,13 +51,25 @@ public class HexHelper {
 		stackIn.setTagCompound(stackNBT); //update the actual compound
 		return stackIn;
 	}
-	
+
+	/**
+	 * Should be used for hexes that are fired on right clicking nothing
+	 * @return
+	 */
 	public static ItemStack activate(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+		return activate(stack, world, player, hand, null);
+	}
+
+	/**
+	 * Should be used for hexes that are fired on right clicking entities
+	 * @return
+	 */
+	public static ItemStack activate(ItemStack stack, World world, EntityPlayer player, EnumHand hand, @Nullable EntityLivingBase target){
 		List<Hex> hexes = getHexes(stack);
 		if(!hexes.isEmpty()) {
 			int multiplier = 1;
 			for(Hex h : hexes) {
-				stack = h.activeUse(stack, world, player, hand);
+				stack = h.activeUse(stack, world, player, hand, target);
 				multiplier += h.getCost();
 	        }
 			stack.damageItem(multiplier * hexes.size(), player);

@@ -2,15 +2,15 @@ package mdc.voodoocraft.items;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
-import mdc.voodoocraft.handlers.RegHandler;
+import mdc.voodoocraft.init.VCAchievements;
 import mdc.voodoocraft.hexes.Hex;
 import mdc.voodoocraft.hexes.HexEntry;
+import mdc.voodoocraft.init.VCHexes;
 import mdc.voodoocraft.util.HexHelper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,6 +35,13 @@ public class ItemDoll extends VCItem
     }
 
     @Override
+    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn)
+    {
+        if(!worldIn.isRemote)
+            playerIn.addStat(VCAchievements.achievementHexFirstTime);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
     {
@@ -42,8 +49,9 @@ public class ItemDoll extends VCItem
         subItems.add(new ItemStack(this));
 
         //Add a doll for every Hex
-        for(HexEntry entry : RegHandler.getHexRegistry().getValues()) {
-            ItemStack dollWithHex = HexHelper.setHexes(new ItemStack(itemIn), Lists.newArrayList(new Hex(entry)));
+        for(HexEntry entry : VCHexes.HEXES.values())
+        {
+            ItemStack dollWithHex = HexHelper.setHexes(new ItemStack(itemIn), new Hex(entry));
             subItems.add(dollWithHex);
         }
     }
@@ -53,12 +61,9 @@ public class ItemDoll extends VCItem
     {
         itemStackIn = HexHelper.activate(itemStackIn, worldIn, playerIn, hand);
         playerIn.getCooldownTracker().setCooldown(this, 30); //1.5 seconds cooldown after use
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
     }
 
-    /**
-     * Allows item to add custom lines of information to the mouseover description
-     */
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
@@ -68,7 +73,7 @@ public class ItemDoll extends VCItem
     	tooltip.add(I18n.format("desc.hex.name"));
     	if(!hexes.isEmpty()) {
     		for(Hex h : hexes) {
-    			tooltip.add(h.getFormattedName());
+    			tooltip.add(h.getLocalisedName());
     			if(h.getDescription() != null && GuiScreen.isShiftKeyDown()) {
     				tooltip.add(h.getDescription());
     			}
@@ -77,7 +82,11 @@ public class ItemDoll extends VCItem
     	else {
           	 tooltip.add(I18n.format("hex.none.name"));
         }
-    	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + "Press SHIFT for more information");
+    	if(!GuiScreen.isShiftKeyDown()) tooltip.add(TextFormatting.AQUA + I18n.format("press.for.info.name", "SHIFT")); //TODO: configurable key?
     }
-    
+
+    @Override
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
+        return super.itemInteractionForEntity(stack, playerIn, target, hand);
+    }
 }
